@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vincent Mano | Polished Artifacts</title>
-    <meta name="description" content="Official website of Vincent Mano, alternative rock/electronic pop musician from Woodland Hills, California. Featuring the album 'Polished Artifacts'">
+    <title>Inkblots and Photographs | Vincent Mano</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
         body {
@@ -18,35 +16,18 @@
         .hero-gradient {
             background: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(20,20,20,0.7) 100%);
         }
-        .album-cover {
-            transition: transform 0.3s ease;
-        }
-        .album-cover:hover {
-            transform: scale(1.03);
-        }
-        .social-icon {
-            transition: all 0.3s ease;
-        }
-        .social-icon:hover {
-            transform: translateY(-3px);
-            color: #ccc;
-        }
-        .music-player {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-        }
     </style>
 </head>
 <body class="antialiased">
     <!-- Navigation -->
     <nav class="fixed w-full z-50 bg-black bg-opacity-90 py-4 px-6">
         <div class="container mx-auto flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-white">Vincent Mano</a>
+            <a href="index.html" class="text-2xl font-bold text-white">Vincent Mano</a>
             <div class="hidden md:flex space-x-8">
-                <a href="#music" class="text-white hover:text-gray-300 transition">Music</a>
-                <a href="#about" class="text-white hover:text-gray-300 transition">About</a>
-                <a href="#upcoming" class="text-white hover:text-gray-300 transition">Upcoming</a>
-                <a href="#contact" class="text-white hover:text-gray-300 transition">Contact</a>
+                <a href="index.html#music" class="text-white hover:text-gray-300 transition">Music</a>
+                <a href="index.html#about" class="text-white hover:text-gray-300 transition">About</a>
+                <a href="index.html#upcoming" class="text-white hover:text-gray-300 transition">Upcoming</a>
+                <a href="index.html#contact" class="text-white hover:text-gray-300 transition">Contact</a>
             </div>
             <button class="md:hidden text-white">
                 <i data-feather="menu"></i>
@@ -56,175 +37,58 @@
 
     <!-- Hero Section -->
     <section class="hero-gradient min-h-screen flex items-center justify-center pt-20">
-        <div class="container mx-auto px-6 py-20 flex flex-col md:flex-row items-center">
-            <div class="md:w-1/2 mb-12 md:mb-0">
-                <h1 class="text-5xl md:text-7xl font-bold mb-6">Polished Artifacts</h1>
-                <p class="text-xl mb-8 text-gray-300">The latest album from Vincent Mano - now streaming everywhere</p>
-                <div class="flex space-x-4 mb-12">
-                    <a href="https://music.apple.com/us/album/polished-artifacts/1773404345" class="bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition">Apple Music</a>
-                    <a href="https://open.spotify.com/album/3V5DPaGBJgrYOVh8DSDT1a?si=3xqathPRThKY17gt-lipHg" class="bg-green-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-green-600 transition">Spotify</a>
-                </div>
-                <div class="flex space-x-6">
-                    <a href="https://www.instagram.com/iamvincemano" class="social-icon text-white">
-                        <i data-feather="instagram"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="md:w-1/2 flex justify-center">
-                <img src="https://huggingface.co/spaces/Vinni3mac/polished-sonic-artifacts/resolve/main/images/Scan 1.jpeg" alt="Polished Artifacts Album Cover" class="album-cover rounded-lg shadow-2xl w-full max-w-md">
-</div>
-        </div>
-    </section>
-
-    <!-- Music Section -->
-    <section id="music" class="py-20 bg-black">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-12 text-center">Music</h2>
-            <div class="music-player rounded-xl p-8 max-w-4xl mx-auto">
-                <h3 class="text-2xl font-semibold mb-6">Polished Artifacts</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                    <div class="bg-black bg-opacity-50 p-4 rounded-lg">
-                        <h4 class="font-semibold mb-2">1. Tell Me That You Mean It</h4>
-                        <audio controls class="w-full mt-2">
-                            <source src="https://music.apple.com/us/album/tell-me-that-you-mean-it/1773404345?i=1773404981" type="audio/mpeg">
-                        </audio>
-                    </div>
-                    <div class="bg-black bg-opacity-50 p-4 rounded-lg">
-                        <h4 class="font-semibold mb-2">2. I Got This Feeling</h4>
-                        <audio controls class="w-full mt-2">
-                            <source src="https://music.apple.com/us/album/i-got-this-feeling/1773404345?i=1773404458" type="audio/mpeg">
-                        </audio>
-                    </div>
-</div>
-                <div class="flex justify-center space-x-4">
-                    <a href="https://music.apple.com/us/album/polished-artifacts/1773404345" class="flex items-center bg-gray-800 text-white px-4 py-2 rounded-full hover:bg-gray-700 transition">
-                        <i data-feather="music" class="mr-2"></i> Apple Music
-                    </a>
-                    <a href="https://open.spotify.com/album/3V5DPaGBJgrYOVh8DSDT1a?si=3xqathPRThKY17gt-lipHg" class="flex items-center bg-gray-800 text-white px-4 py-2 rounded-full hover:bg-gray-700 transition">
-                        <i data-feather="play" class="mr-2"></i> Spotify
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-20 bg-gray-900">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-12 text-center">About</h2>
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
-                    <img src="https://huggingface.co/spaces/Vinni3mac/polished-sonic-artifacts/resolve/main/images/3A95422D-D916-4089-BC10-728A191CF2DF.JPG" alt="Vincent Mano" class="rounded-full w-64 h-64 object-cover shadow-xl">
-</div>
-                <div class="md:w-2/3 md:pl-12">
-                    <p class="text-lg mb-6">
-                        Vincent Mano is a Woodland Hills, California–based musician whose career spans multiple roles in the music industry. Performing and writing since the early 2000s, he first gained recognition as the lead singer of Fallover Tuesday and has collaborated with artists such as Cory Carson and Gardner Cole.
+        <div class="container mx-auto px-6 py-20 text-center">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6">Inkblots and Photographs</h1>
+            <p class="text-xl mb-8 text-gray-300">Coming Early 2026</p>
+            <div class="max-w-3xl mx-auto">
+                <img src="https://huggingface.co/spaces/Vinni3mac/polished-sonic-artifacts/resolve/main/images/IMG_3686.jpg" alt="Inkblots and Photographs" class="rounded-lg shadow-2xl w-full mb-12">
+                <div class="text-lg space-y-6">
+                    <p>
+                        "Inkblots and Photographs" represents Vincent Mano's deepest exploration into emotional storytelling through music. This upcoming album marks a significant evolution in his sound, embracing a slower, more introspective approach to electronic creation.
                     </p>
-                    <p class="text-lg mb-6">
-                        A versatile multi-instrumentalist, Vincent blends alternative rock with electronic-powered pop, crafting layered, genre-crossing melodies that are now gaining significant traction. His current album, "Polished Artifacts," is available on all streaming platforms, and he is preparing for a new album and tour with a release set for 2026.
+                    <p>
+                        Each track will serve as an audio photograph - capturing raw emotional moments through lush synthesizers, delicate piano work, and Vincent's signature vulnerable vocal delivery.
                     </p>
-<div class="mb-6">
-                        <h3 class="text-2xl font-semibold mb-4">Instruments</h3>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="bg-gray-800 px-3 py-1 rounded-full">Guitar</span>
-                            <span class="bg-gray-800 px-3 py-1 rounded-full">Piano</span>
-                            <span class="bg-gray-800 px-3 py-1 rounded-full">Drums</span>
-                            <span class="bg-gray-800 px-3 py-1 rounded-full">Bass</span>
-                            <span class="bg-gray-800 px-3 py-1 rounded-full">Ukulele</span>
-                        </div>
-                    </div>
+                    <p>
+                        The album draws inspiration from the contrast between fleeting digital moments and permanent emotional imprints, blending organic instrumentation with cutting-edge electronic production techniques.
+                    </p>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Upcoming Section -->
-    <section id="upcoming" class="py-20 bg-black">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-12 text-center">Upcoming</h2>
-            <div class="max-w-4xl mx-auto">
-                <div class="bg-gray-900 rounded-xl p-8 flex flex-col md:flex-row items-center">
-                    <div class="md:w-1/3 mb-6 md:mb-0 flex justify-center">
-                        <img src="https://huggingface.co/spaces/Vinni3mac/polished-sonic-artifacts/resolve/main/images/IMG_3686.jpg" alt="Inkblots and Photographs" class="rounded-lg w-full max-w-xs shadow-xl">
-</div>
-                    <div class="md:w-2/3 md:pl-8">
-                        <h3 class="text-2xl font-semibold mb-2">Inkblots and Photographs</h3>
-                        <p class="text-gray-400 mb-4">Coming Early 2026</p>
-                        <p class="mb-6">
-                            The next chapter in Vincent's musical journey explores deeper emotional landscapes through his signature blend of alternative rock and electronic pop.
-                        </p>
-                        <a href="inkblots.html" class="inline-block bg-white text-black px-6 py-2 rounded-full font-semibold hover:bg-gray-200 transition">
-                            Learn More
-                        </a>
-</div>
-                </div>
+            <!-- Music Embed Section -->
+            <div class="mt-16 space-y-12">
+                <h2 class="text-3xl font-bold mb-6">Listen Now</h2>
+
+                <!-- Tell Me That You Mean It -->
+                <iframe allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" 
+                    frameborder="0" height="175" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" 
+                    sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation" 
+                    src="https://embed.music.apple.com/us/album/tell-me-that-you-mean-it/1773404345?i=1773404981"></iframe>
+
+                <!-- I Got This Feeling -->
+                <iframe allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" 
+                    frameborder="0" height="175" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" 
+                    sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation" 
+                    src="https://embed.music.apple.com/us/album/i-got-this-feeling/1773404345?i=1773404458"></iframe>
             </div>
+
+            <!-- Back Button -->
+            <a href="index.html" class="inline-block bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition mt-12">
+                Back to Main
+            </a>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-gray-900">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-12 text-center">Contact</h2>
-            <div class="max-w-2xl mx-auto">
-                <form class="space-y-6">
-                    <div>
-                        <label for="name" class="block mb-2">Name</label>
-                        <input type="text" id="name" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-white">
-                    </div>
-                    <div>
-                        <label for="email" class="block mb-2">Email</label>
-                        <input type="email" id="email" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-white">
-                    </div>
-                    <div>
-                        <label for="message" class="block mb-2">Message</label>
-                        <textarea id="message" rows="5" class="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-white"></textarea>
-                    </div>
-                    <button type="submit" class="bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition w-full">
-                        Send Message
-                    </button>
-                </form>
-                <div class="mt-12 text-center">
-                    <p class="mb-4">For booking and press inquiries:</p>
-                    <a href="mailto:ContactUs@VincentMano.com" class="text-white hover:underline block mb-2">ContactUs@VincentMano.com</a>
-<p class="text-white">Manager: Steven Goldman</p>
-                    <a href="tel:+18057388042" class="text-white hover:underline">+1 (805) 738-8042</a>
-                </div>
-</div>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer class="py-12 bg-black">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="mb-6 md:mb-0">
-                    <a href="#" class="text-2xl font-bold text-white">Vincent Mano</a>
-                </div>
-                <div class="flex space-x-6 mb-6 md:mb-0">
-                    <a href="https://www.instagram.com/iamvincemano" class="social-icon text-white">
-                        <i data-feather="instagram"></i>
-                    </a>
-                </div>
-                <div class="text-gray-400 text-sm">
-                    &copy; 2024 Vincent Mano. All rights reserved.
-                </div>
+        <div class="container mx-auto px-6 text-center">
+            <div class="text-gray-400 text-sm">
+                &copy; 2024 Vincent Mano. All rights reserved.
             </div>
         </div>
     </footer>
 
     <script>
         feather.replace();
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
     </script>
 </body>
 </html>

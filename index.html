@@ -70,11 +70,20 @@ top: 0;
             </button>
         </div>
     </nav>
-
-    <!-- Hero Section -->
-    <section class="hero-gradient min-h-screen flex items-center justify-center pt-20">
-        <div class="container mx-auto px-6 py-20 flex flex-col md:flex-row items-center">
-            <div class="md:w-1/2 mb-12 md:mb-0">
+    <!-- Hero Section with Top Image -->
+    <div class="w-full h-auto relative">
+        <img src="https://huggingface.co/spaces/Vinni3mac/polished-sonic-artifacts/resolve/main/images/IMG_2390.jpg" alt="Vincent Mano" class="w-full h-auto object-cover" style="max-height: 70vh;">
+            <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40" style="padding-top: 7rem;">
+            <div class="text-center mt-8">
+<div class="text-4xl md:text-7xl font-bold text-white opacity-60 mb-2">Vincent</div>
+                <div class="text-4xl md:text-7xl font-bold text-white opacity-60 mb-2">Mano</div>
+                <div class="text-xl md:text-3xl font-semibold text-white opacity-50 tracking-widest">MUSIC</div>
+</div>
+</div>
+    </div>
+<section class="hero-gradient min-h-screen flex items-center justify-center pt-8">
+        <div class="container mx-auto px-6 py-12 flex flex-col md:flex-row items-center">
+<div class="md:w-1/2 mb-12 md:mb-0">
                 <h1 class="text-5xl md:text-7xl font-bold mb-6">Polished Artifacts</h1>
                 <p class="text-xl mb-8 text-gray-300">The latest album from Vincent Mano - now streaming everywhere</p>
                 <div class="flex space-x-4 mb-12">
@@ -93,7 +102,14 @@ top: 0;
         </div>
     </section>
 
-    <!-- Music Section -->
+    <!-- Style adjustment for the new layout -->
+    <style>
+        nav {
+            position: relative;
+            z-index: 1000;
+        }
+    </style>
+<!-- Music Section -->
     <section id="music" class="py-20 bg-transparent">
 <div class="container mx-auto px-6">
             <h2 class="text-4xl font-bold mb-12 text-center">Music</h2>

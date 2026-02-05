@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,166 +7,606 @@
     <meta name="description" content="Official website of Vincent Mano, alternative rock/electronic pop musician from Woodland Hills, California. Featuring the album 'Polished Artifacts'">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
-    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: #000;
+            background-color: #0a0a0a;
             color: #fff;
-            position: relative;
-            z-index: 1;
+            overflow-x: hidden;
         }
-        body::before {
-            content: "";
-            background-image: url('https://huggingface.co/spaces/Vinni3mac/polished-sonic-artifacts/resolve/main/images/F0A5200F-4E3D-4625-9F78-0D465ACEC581.PNG');
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: contain;
-            opacity: 0.6;
+
+        /* Animated Inkblot Background */
+        .inkblot-bg {
             position: fixed;
-top: 0;
+            top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
-            pointer-events: none;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
         }
+
+        .inkblot {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.4;
+            animation: inkblotPulse 8s ease-in-out infinite;
+        }
+
+        .inkblot-1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(ellipse, #1a1a2e 0%, #2d132c 50%, transparent 70%);
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .inkblot-2 {
+            width: 500px;
+            height: 300px;
+            background: radial-gradient(ellipse, #16213e 0%, #1a1a2e 50%, transparent 70%);
+            top: 30%;
+            right: 10%;
+            animation-delay: 2s;
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        }
+
+        .inkblot-3 {
+            width: 350px;
+            height: 450px;
+            background: radial-gradient(ellipse, #2d132c 0%, #1a1a2e 50%, transparent 70%);
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        }
+
+        .inkblot-4 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(ellipse, #0f3460 0%, #16213e 50%, transparent 70%);
+            top: 60%;
+            right: 5%;
+            animation-delay: 1s;
+        }
+
+        .inkblot-5 {
+            width: 450px;
+            height: 350px;
+            background: radial-gradient(ellipse, #1a1a2e 0%, #2d132c 50%, transparent 70%);
+            top: 80%;
+            left: 40%;
+            animation-delay: 3s;
+            border-radius: 70% 30% 50% 50% / 30% 70% 30% 70%;
+        }
+
+        @keyframes inkblotPulse {
+            0%, 100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 0.3;
+            }
+            50% {
+                transform: scale(1.2) rotate(5deg);
+                opacity: 0.5;
+            }
+        }
+
+        /* Floating Music Notes */
+        .music-notes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .note {
+            position: absolute;
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.1);
+            animation: floatNote 15s linear infinite;
+        }
+
+        @keyframes floatNote {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Animated Sound Wave Button */
+        .sound-wave-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .sound-wave-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+            border-radius: 50%;
+        }
+
+        .sound-wave-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .sound-wave-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Equalizer Button Effect */
+        .equalizer-btn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .equalizer-btn .eq-bars {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: flex-end;
+            padding: 5px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .equalizer-btn:hover .eq-bars {
+            opacity: 0.5;
+        }
+
+        .eq-bar {
+            width: 3px;
+            background: currentColor;
+            animation: eqBounce 0.5s ease-in-out infinite alternate;
+        }
+
+        .eq-bar:nth-child(1) { animation-delay: 0s; }
+        .eq-bar:nth-child(2) { animation-delay: 0.1s; }
+        .eq-bar:nth-child(3) { animation-delay: 0.2s; }
+        .eq-bar:nth-child(4) { animation-delay: 0.15s; }
+        .eq-bar:nth-child(5) { animation-delay: 0.05s; }
+
+        @keyframes eqBounce {
+            0% { height: 20%; }
+            100% { height: 80%; }
+        }
+
+        /* Pulse Ring Animation for Links */
+        .pulse-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .pulse-link::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            border: 2px solid currentColor;
+            border-radius: inherit;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            animation: none;
+        }
+
+        .pulse-link:hover::after {
+            animation: pulseRing 1s ease-out infinite;
+        }
+
+        @keyframes pulseRing {
+            0% {
+                width: 100%;
+                height: 100%;
+                opacity: 0.8;
+            }
+            100% {
+                width: 150%;
+                height: 150%;
+                opacity: 0;
+            }
+        }
+
+        /* Glowing Text Effect */
+        .glow-text {
+            transition: all 0.3s ease;
+        }
+
+        .glow-text:hover {
+            text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+        }
+
+        /* Vinyl Spin Animation */
+        .vinyl-spin:hover {
+            animation: vinylRotate 3s linear infinite;
+        }
+
+        @keyframes vinylRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Wave Background for Sections */
+        .wave-section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wave-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.02), transparent);
+            animation: waveMove 8s linear infinite;
+        }
+
+        @keyframes waveMove {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(50%); }
+        }
+
+        /* Neon Border Animation */
+        .neon-border {
+            position: relative;
+            border: 2px solid transparent;
+            background: linear-gradient(#0a0a0a, #0a0a0a) padding-box,
+                        linear-gradient(90deg, #ff0000, #ff6b6b, #ff0000) border-box;
+            background-size: 100% 100%, 200% 100%;
+            animation: neonFlow 3s linear infinite;
+        }
+
+        @keyframes neonFlow {
+            0% { background-position: 0% 0%, 0% 0%; }
+            100% { background-position: 0% 0%, 200% 0%; }
+        }
+
+        /* Ripple Effect */
+        .ripple {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ripple:active::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            animation: rippleEffect 0.6s ease-out;
+        }
+
+        @keyframes rippleEffect {
+            to {
+                transform: translate(-50%, -50%) scale(40);
+                opacity: 0;
+            }
+        }
+
+        /* Hero gradient with animation */
         .hero-gradient {
             background: transparent;
-}
+        }
+
         .album-cover {
-            transition: transform 0.3s ease;
+            transition: all 0.5s ease;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
+
         .album-cover:hover {
-            transform: scale(1.03);
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 30px 60px -12px rgba(139, 0, 0, 0.4);
         }
+
         .social-icon {
             transition: all 0.3s ease;
         }
+
         .social-icon:hover {
-            transform: translateY(-3px);
-            color: #ccc;
+            transform: translateY(-5px) scale(1.2);
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
         }
+
         .music-player {
-            background: transparent;
-}
+            background: rgba(20, 20, 30, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Menu Animation */
+        .menu-item {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-item::before {
+            content: '♪';
+            position: absolute;
+            left: -20px;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .menu-item:hover::before {
+            left: 10px;
+            opacity: 1;
+        }
+
+        .menu-item:hover {
+            padding-left: 30px;
+        }
+
+        /* Instrument Tags Animation */
+        .instrument-tag {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .instrument-tag:hover {
+            background: linear-gradient(135deg, #ff4444, #cc0000);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 68, 68, 0.4);
+        }
+
+        /* Spotify Green Glow */
+        .spotify-btn {
+            transition: all 0.3s ease;
+        }
+
+        .spotify-btn:hover {
+            box-shadow: 0 0 20px rgba(30, 215, 96, 0.6), 0 0 40px rgba(30, 215, 96, 0.3);
+        }
+
+        /* Apple Music Glow */
+        .apple-btn {
+            transition: all 0.3s ease;
+        }
+
+        .apple-btn:hover {
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.6), 0 0 40px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Section Reveal Animation */
+        .reveal-section {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Cusdis styling */
+        #cusdis_thread {
+            background-color: rgba(20, 20, 20, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+        }
+
+        #cusdis_thread iframe {
+            background-color: transparent !important;
+        }
+
+        /* Form Input Animation */
+        .animated-input {
+            transition: all 0.3s ease;
+            border: 1px solid #333;
+        }
+
+        .animated-input:focus {
+            border-color: #ff4444;
+            box-shadow: 0 0 15px rgba(255, 68, 68, 0.3);
+            transform: scale(1.02);
+        }
+
+        .animated-input::placeholder {
+            transition: all 0.3s ease;
+        }
+
+        .animated-input:focus::placeholder {
+            opacity: 0.5;
+            transform: translateX(10px);
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            background: linear-gradient(135deg, #333 0%, #555 100%);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #cc0000 0%, #ff4444 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 68, 68, 0.3);
+        }
+
+        /* Nav styling */
+        nav {
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
     </style>
 </head>
 <body class="antialiased">
+    <!-- Animated Inkblot Background -->
+    <div class="inkblot-bg">
+        <div class="inkblot inkblot-1"></div>
+        <div class="inkblot inkblot-2"></div>
+        <div class="inkblot inkblot-3"></div>
+        <div class="inkblot inkblot-4"></div>
+        <div class="inkblot inkblot-5"></div>
+    </div>
+
+    <!-- Floating Music Notes -->
+    <div class="music-notes" id="musicNotes"></div>
+
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-black bg-opacity-90 py-4 px-6">
+    <nav class="fixed w-full z-50 bg-black bg-opacity-80 py-4 px-6">
         <div class="container mx-auto flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-white">Vincent Mano</a>
-<div class="relative">
-    <div class="relative">
-        <button id="menu-toggle" class="text-white bg-red-600 px-3 py-1 rounded flex items-center space-x-1">
-            <span>Menu</span>
-            <i id="menu-icon" data-feather="chevron-down" class="w-4 h-4"></i>
-        </button>
-        <div id="menu-dropdown" class="absolute right-0 mt-2 w-48 bg-black bg-opacity-90 border border-red-600 rounded-md shadow-lg hidden z-50">
-<a href="#music" class="block px-4 py-2 text-white hover:bg-red-600 transition">Music</a>
-        <a href="#about" class="block px-4 py-2 text-white hover:bg-red-600 transition">About</a>
-        <a href="#contact" class="block px-4 py-2 text-white hover:bg-red-600 transition">Contact</a>
-        <a href="#upcoming" class="block px-4 py-2 text-white hover:bg-red-600 transition">Upcoming</a>
-        <a href="news.html" class="block px-4 py-2 text-white hover:bg-red-600 transition">News</a>
-        <a href="tour-dates.html" class="block px-4 py-2 text-white hover:bg-red-600 transition">Tour Dates</a>
-</div>
-</div>
-</div>
+            <a href="#" class="text-2xl font-bold text-white glow-text">Vincent Mano</a>
+            <div class="relative">
+                <button id="menu-toggle" class="text-white bg-red-600 px-4 py-2 rounded-lg flex items-center space-x-2 sound-wave-btn ripple neon-border">
+                    <span>Menu</span>
+                    <i id="menu-icon" data-feather="chevron-down" class="w-4 h-4"></i>
+                </button>
+                <div id="menu-dropdown" class="absolute right-0 mt-2 w-48 bg-black bg-opacity-95 border border-red-600 rounded-lg shadow-2xl hidden z-50 overflow-hidden">
+                    <a href="#music" class="menu-item block px-4 py-3 text-white hover:bg-red-600 transition">Music</a>
+                    <a href="#about" class="menu-item block px-4 py-3 text-white hover:bg-red-600 transition">About</a>
+                    <a href="#contact" class="menu-item block px-4 py-3 text-white hover:bg-red-600 transition">Contact</a>
+                    <a href="#upcoming" class="menu-item block px-4 py-3 text-white hover:bg-red-600 transition">Upcoming</a>
+                    <a href="news.html" class="menu-item block px-4 py-3 text-white hover:bg-red-600 transition">News</a>
+                    <a href="tour-dates.html" class="menu-item block px-4 py-3 text-white hover:bg-red-600 transition">Tour Dates</a>
+                </div>
+            </div>
+        </div>
     </nav>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuToggle = document.getElementById('menu-toggle');
-            const menuDropdown = document.getElementById('menu-dropdown');
-            const menuIcon = document.getElementById('menu-icon');
-
-            menuToggle.addEventListener('click', function() {
-                // Toggle menu visibility
-                menuDropdown.classList.toggle('hidden');
-                
-                // Change icon direction
-                if (menuDropdown.classList.contains('hidden')) {
-                    feather.replace();
-                } else {
-                    menuIcon.setAttribute('data-feather', 'chevron-up');
-                    feather.replace();
-                }
-            });
-
-            // Close menu when clicking outside
-            document.addEventListener('click', function(event) {
-                if (!menuToggle.contains(event.target) && !menuDropdown.contains(event.target)) {
-                    menuDropdown.classList.add('hidden');
-                    menuIcon.setAttribute('data-feather', 'chevron-down');
-                    feather.replace();
-                }
-            });
-        });
-    </script>
-
     <!-- Hero Section with Top Image -->
-<div class="w-full h-auto relative">
+    <div class="w-full h-auto relative">
         <img src="https://huggingface.co/spaces/Vinni3mac/polished-sonic-artifacts/resolve/main/images/IMG_2390.jpg" alt="Vincent Mano" class="w-full h-auto object-cover" style="max-height: 70vh;">
-            <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40" style="padding-top: 7rem;">
+        <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40" style="padding-top: 7rem;">
             <div class="text-center mt-8">
-<div class="text-4xl md:text-7xl font-bold text-white opacity-60 mb-2">Vincent</div>
-                <div class="text-4xl md:text-7xl font-bold text-white opacity-60 mb-2">Mano</div>
-                <div class="text-xl md:text-3xl font-semibold text-white opacity-50 tracking-widest">MUSIC</div>
-</div>
-</div>
+                <div class="text-4xl md:text-7xl font-bold text-white opacity-80 mb-2 glow-text" style="animation: pulse 2s ease-in-out infinite;">Vincent</div>
+                <div class="text-4xl md:text-7xl font-bold text-white opacity-80 mb-2 glow-text" style="animation: pulse 2s ease-in-out infinite 0.5s;">Mano</div>
+                <div class="text-xl md:text-3xl font-semibold text-white opacity-60 tracking-widest" style="animation: pulse 2s ease-in-out infinite 1s;">MUSIC</div>
+            </div>
+        </div>
     </div>
-<section class="hero-gradient min-h-screen flex items-center justify-center pt-8">
+
+    <style>
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; text-shadow: 0 0 20px rgba(255,255,255,0.5); }
+        }
+    </style>
+
+    <section class="hero-gradient min-h-screen flex items-center justify-center pt-8 wave-section reveal-section">
         <div class="container mx-auto px-6 py-12 flex flex-col md:flex-row items-center">
-<div class="md:w-1/2 mb-12 md:mb-0">
-                <h1 class="text-5xl md:text-7xl font-bold mb-6">Polished Artifacts</h1>
+            <div class="md:w-1/2 mb-12 md:mb-0">
+                <h1 class="text-5xl md:text-7xl font-bold mb-6 glow-text">Polished Artifacts</h1>
                 <p class="text-xl mb-8 text-gray-300">The latest album from Vincent Mano - now streaming everywhere</p>
-                <div class="flex space-x-4 mb-12">
-                    <a href="https://music.apple.com/us/album/polished-artifacts/1773404345" class="bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition">Apple Music</a>
-                    <a href="https://open.spotify.com/album/3V5DPaGBJgrYOVh8DSDT1a?si=3xqathPRThKY17gt-lipHg" class="bg-green-500 text-white px-6 py-3 rounded-full font-semibold hover:bg-green-600 transition">Spotify</a>
+                <div class="flex flex-wrap gap-4 mb-12">
+                    <a href="https://music.apple.com/us/album/polished-artifacts/1773404345" class="apple-btn bg-white text-black px-6 py-3 rounded-full font-semibold sound-wave-btn ripple pulse-link">
+                        <span class="relative z-10">Apple Music</span>
+                    </a>
+                    <a href="https://open.spotify.com/album/3V5DPaGBJgrYOVh8DSDT1a?si=3xqathPRThKY17gt-lipHg" class="spotify-btn bg-green-500 text-white px-6 py-3 rounded-full font-semibold equalizer-btn ripple pulse-link">
+                        <span class="relative z-10">Spotify</span>
+                        <div class="eq-bars">
+                            <div class="eq-bar"></div>
+                            <div class="eq-bar"></div>
+                            <div class="eq-bar"></div>
+                            <div class="eq-bar"></div>
+                            <div class="eq-bar"></div>
+                        </div>
+                    </a>
                 </div>
                 <div class="flex space-x-6">
                     <a href="https://www.instagram.com/vincemano" class="social-icon text-white">
-<i data-feather="instagram"></i>
+                        <i data-feather="instagram"></i>
                     </a>
                 </div>
             </div>
             <div class="md:w-1/2 flex justify-center">
-                <img src="https://huggingface.co/spaces/Vinni3mac/polished-sonic-artifacts/resolve/main/images/Scan 1.jpeg" alt="Polished Artifacts Album Cover" class="album-cover rounded-lg shadow-2xl w-full max-w-md">
-</div>
+                <img src="https://huggingface.co/spaces/Vinni3mac/polished-sonic-artifacts/resolve/main/images/Scan 1.jpeg" alt="Polished Artifacts Album Cover" class="album-cover vinyl-spin rounded-lg shadow-2xl w-full max-w-md cursor-pointer">
+            </div>
         </div>
     </section>
 
-    <!-- Style adjustment for the new layout -->
-    <style>
-        nav {
-            position: relative;
-            z-index: 1000;
-        }
-    </style>
-<!-- Music Section -->
-    <section id="music" class="py-20 bg-transparent">
-<div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-12 text-center">Music</h2>
+    <!-- Music Section -->
+    <section id="music" class="py-20 wave-section reveal-section">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-12 text-center glow-text">Music</h2>
             <div class="music-player rounded-xl p-8 max-w-4xl mx-auto">
                 <h3 class="text-2xl font-semibold mb-6">Polished Artifacts</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                    <div class="bg-black bg-opacity-50 p-4 rounded-lg">
+                    <div class="bg-black bg-opacity-50 p-4 rounded-lg border border-transparent hover:border-red-600 transition-all duration-300">
                         <h4 class="font-semibold mb-2">1. Tell Me That You Mean It</h4>
                         <iframe allow="autoplay *; encrypted-media *;" frameborder="0" height="150" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/us/album/tell-me-that-you-mean-it/1773404345?i=1773404981"></iframe>
                     </div>
-<div class="bg-black bg-opacity-50 p-4 rounded-lg">
+                    <div class="bg-black bg-opacity-50 p-4 rounded-lg border border-transparent hover:border-red-600 transition-all duration-300">
                         <h4 class="font-semibold mb-2">2. I Got This Feeling</h4>
                         <iframe allow="autoplay *; encrypted-media *;" frameborder="0" height="150" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/us/album/i-got-this-feeling/1773404345?i=1773404458"></iframe>
                     </div>
-</div>
-                <div class="flex justify-center space-x-4">
-                    <a href="https://music.apple.com/us/album/polished-artifacts/1773404345" class="flex items-center bg-gray-800 text-white px-4 py-2 rounded-full hover:bg-gray-700 transition">
-                        <i data-feather="music" class="mr-2"></i> Apple Music
+                </div>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="https://music.apple.com/us/album/polished-artifacts/1773404345" class="flex items-center bg-gray-800 text-white px-5 py-3 rounded-full sound-wave-btn ripple apple-btn">
+                        <i data-feather="music" class="mr-2"></i> 
+                        <span class="relative z-10">Apple Music</span>
                     </a>
-                    <a href="https://open.spotify.com/album/3V5DPaGBJgrYOVh8DSDT1a?si=3xqathPRThKY17gt-lipHg" class="flex items-center bg-gray-800 text-white px-4 py-2 rounded-full hover:bg-gray-700 transition">
-                        <i data-feather="play" class="mr-2"></i> Spotify
+                    <a href="https://open.spotify.com/album/3V5DPaGBJgrYOVh8DSDT1a?si=3xqathPRThKY17gt-lipHg" class="flex items-center bg-gray-800 text-white px-5 py-3 rounded-full equalizer-btn ripple spotify-btn">
+                        <i data-feather="play" class="mr-2"></i> 
+                        <span class="relative z-10">Spotify</span>
+                        <div class="eq-bars">
+                            <div class="eq-bar"></div>
+                            <div class="eq-bar"></div>
+                            <div class="eq-bar"></div>
+                            <div class="eq-bar"></div>
+                            <div class="eq-bar"></div>
+                        </div>
                     </a>
                 </div>
             </div>
@@ -174,9 +614,9 @@ top: 0;
     </section>
 
     <!-- Comment Section -->
-    <section id="comments" class="py-20 bg-transparent">
+    <section id="comments" class="py-20 wave-section reveal-section">
         <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-12 text-center">Let me know what you think!</h2>
+            <h2 class="text-4xl font-bold mb-12 text-center glow-text">Let me know what you think!</h2>
             <div id="cusdis_thread" 
                  data-host="https://cusdis.com"
                  data-app-id="9d55e686-51fe-4129-8e93-d2b06b0f96ce"
@@ -192,13 +632,13 @@ top: 0;
     <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
 
     <!-- About Section -->
-<section id="about" class="py-20 bg-transparent">
-<div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-12 text-center">About</h2>
+    <section id="about" class="py-20 wave-section reveal-section">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-12 text-center glow-text">About</h2>
             <div class="flex flex-col md:flex-row items-center">
                 <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
-                    <img src="https://huggingface.co/spaces/Vinni3mac/polished-sonic-artifacts/resolve/main/images/IMG_1854.jpg" alt="Vincent Mano" class="rounded-full w-64 h-64 object-cover shadow-xl hover:scale-105 transition-transform duration-300 hovered-element">
-</div>
+                    <img src="https://huggingface.co/spaces/Vinni3mac/polished-sonic-artifacts/resolve/main/images/IMG_1854.jpg" alt="Vincent Mano" class="rounded-full w-64 h-64 object-cover shadow-xl hover:scale-110 transition-all duration-500 cursor-pointer" style="box-shadow: 0 0 30px rgba(139, 0, 0, 0.3);">
+                </div>
                 <div class="md:w-2/3 md:pl-12">
                     <p class="text-lg mb-6">
                         Vincent Mano is a Woodland Hills, California–based musician whose career spans multiple roles in the music industry. Performing and writing since the early 2000s, he first gained recognition as the lead singer of Fallover Tuesday and has collaborated with artists such as Cory Carson and Gardner Cole.
@@ -206,14 +646,14 @@ top: 0;
                     <p class="text-lg mb-6">
                         A versatile multi-instrumentalist, Vincent blends alternative rock with electronic-powered pop, crafting layered, genre-crossing melodies that are now gaining significant traction. His current album, "Polished Artifacts," is available on all streaming platforms, and he is preparing for a new album and tour with a release set for 2026.
                     </p>
-<div class="mb-6">
+                    <div class="mb-6">
                         <h3 class="text-2xl font-semibold mb-4">Instruments</h3>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="bg-gray-800 px-3 py-1 rounded-full">Guitar</span>
-                            <span class="bg-gray-800 px-3 py-1 rounded-full">Piano</span>
-                            <span class="bg-gray-800 px-3 py-1 rounded-full">Drums</span>
-                            <span class="bg-gray-800 px-3 py-1 rounded-full">Bass</span>
-                            <span class="bg-gray-800 px-3 py-1 rounded-full">Ukulele</span>
+                        <div class="flex flex-wrap gap-3">
+                            <span class="instrument-tag bg-gray-800 px-4 py-2 rounded-full">🎸 Guitar</span>
+                            <span class="instrument-tag bg-gray-800 px-4 py-2 rounded-full">🎹 Piano</span>
+                            <span class="instrument-tag bg-gray-800 px-4 py-2 rounded-full">🥁 Drums</span>
+                            <span class="instrument-tag bg-gray-800 px-4 py-2 rounded-full">🎸 Bass</span>
+                            <span class="instrument-tag bg-gray-800 px-4 py-2 rounded-full">🪕 Ukulele</span>
                         </div>
                     </div>
                 </div>
@@ -222,60 +662,62 @@ top: 0;
     </section>
 
     <!-- Upcoming Section -->
-    <section id="upcoming" class="py-20 bg-transparent">
-<div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-12 text-center">Upcoming</h2>
+    <section id="upcoming" class="py-20 wave-section reveal-section">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-12 text-center glow-text">Upcoming</h2>
             <div class="max-w-4xl mx-auto">
-                    <div class="bg-transparent border border-white border-opacity-20 rounded-xl p-8 flex flex-col md:flex-row items-center">
-<div class="md:w-1/3 mb-6 md:mb-0 flex justify-center">
-                        <img src="https://huggingface.co/spaces/Vinni3mac/polished-sonic-artifacts/resolve/main/images/IMG_3686.jpg" alt="Inkblots and Photographs" class="rounded-lg w-full max-w-xs shadow-xl">
-</div>
+                <div class="bg-gradient-to-br from-gray-900 to-black border border-white border-opacity-20 rounded-xl p-8 flex flex-col md:flex-row items-center hover:border-red-600 transition-all duration-500 hover:shadow-2xl" style="box-shadow: 0 0 40px rgba(0,0,0,0.5);">
+                    <div class="md:w-1/3 mb-6 md:mb-0 flex justify-center">
+                        <img src="https://huggingface.co/spaces/Vinni3mac/polished-sonic-artifacts/resolve/main/images/IMG_3686.jpg" alt="Inkblots and Photographs" class="rounded-lg w-full max-w-xs shadow-xl hover:scale-105 transition-all duration-500">
+                    </div>
                     <div class="md:w-2/3 md:pl-8">
-                        <h3 class="text-2xl font-semibold mb-2">Inkblots and Photographs</h3>
-                        <p class="text-gray-400 mb-4">Coming Early 2026</p>
+                        <h3 class="text-2xl font-semibold mb-2 glow-text">Inkblots and Photographs</h3>
+                        <p class="text-red-400 mb-4 animate-pulse">Coming Early 2026</p>
                         <p class="mb-6">
                             The next chapter in Vincent's musical journey explores deeper emotional landscapes through his signature blend of alternative rock and electronic pop.
                         </p>
                         <div class="flex space-x-4">
-                            <a href="inkblots.html" class="inline-block bg-white text-black px-6 py-2 rounded-full font-semibold hover:bg-gray-200 transition">
-                                Learn More
+                            <a href="inkblots.html" class="inline-block bg-white text-black px-6 py-3 rounded-full font-semibold sound-wave-btn ripple pulse-link">
+                                <span class="relative z-10">Learn More</span>
                             </a>
-</div>
-</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
     <!-- Contact Section -->
-    <section id="contact" style="max-width:700px; margin:2em auto; font-family:Arial, sans-serif; color:#fff;">
-  <h2 style="text-align:center; margin-bottom:1em;">Contact Me</h2>
+    <section id="contact" class="py-20 wave-section reveal-section">
+        <div class="container mx-auto px-6">
+            <div class="max-w-lg mx-auto">
+                <h2 class="text-4xl font-bold mb-8 text-center glow-text">Contact Me</h2>
+                <form action="https://formspree.io/f/mpqjaqgd" method="POST" class="flex flex-col gap-4">
+                    <input type="text" name="name" placeholder="Your Name" required
+                           class="animated-input p-4 text-lg bg-gray-900 text-white rounded-lg outline-none">
+                    <input type="email" name="email" placeholder="Your Email" required
+                           class="animated-input p-4 text-lg bg-gray-900 text-white rounded-lg outline-none">
+                    <textarea name="message" placeholder="Your Message" rows="5" required
+                           class="animated-input p-4 text-lg bg-gray-900 text-white rounded-lg outline-none resize-none"></textarea>
+                    <input type="hidden" name="_captcha" value="true">
+                    <button type="submit" class="submit-btn p-4 text-lg text-white rounded-lg cursor-pointer font-semibold">
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
 
-  <form action="https://formspree.io/f/mpqjaqgd" method="POST" style="display:flex; flex-direction:column; gap:1em;">
-    <input type="text" name="name" placeholder="Your Name" required
-           style="padding:0.5em; font-size:1em; background:#222; color:#fff; border:1px solid #555;">
-    <input type="email" name="email" placeholder="Your Email" required
-           style="padding:0.5em; font-size:1em; background:#222; color:#fff; border:1px solid #555;">
-    <textarea name="message" placeholder="Your Message" rows="5" required
-           style="padding:0.5em; font-size:1em; background:#222; color:#fff; border:1px solid #555;"></textarea>
-
-    <!-- Optional: Spam protection -->
-    <input type="hidden" name="_captcha" value="true">
-
-    <button type="submit" style="padding:0.75em; font-size:1em; background:#444; color:#fff; border:none; cursor:pointer;">
-      Send Message
-    </button>
-  </form>
-</section>
-<!-- Footer -->
-    <footer class="py-12 bg-black">
+    <!-- Footer -->
+    <footer class="py-12 bg-black bg-opacity-80 backdrop-blur-lg">
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
-                    <a href="#" class="text-2xl font-bold text-white">Vincent Mano</a>
+                    <a href="#" class="text-2xl font-bold text-white glow-text">Vincent Mano</a>
                 </div>
                 <div class="flex space-x-6 mb-6 md:mb-0">
                     <a href="https://www.instagram.com/vincemano?igsh=NTc4MTIwNjQ2YQ%3D%3D&utm_source=qr" class="social-icon text-white">
-<i data-feather="instagram"></i>
+                        <i data-feather="instagram"></i>
                     </a>
                 </div>
                 <div class="text-gray-400 text-sm">
@@ -286,29 +728,99 @@ top: 0;
     </footer>
 
     <script>
+        // Initialize Feather Icons
         feather.replace();
+        
+        // Menu Toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menu-toggle');
+            const menuDropdown = document.getElementById('menu-dropdown');
+            const menuIcon = document.getElementById('menu-icon');
+
+            menuToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                menuDropdown.classList.toggle('hidden');
+                
+                if (menuDropdown.classList.contains('hidden')) {
+                    menuIcon.setAttribute('data-feather', 'chevron-down');
+                } else {
+                    menuIcon.setAttribute('data-feather', 'chevron-up');
+                }
+                feather.replace();
+            });
+
+            document.addEventListener('click', function(event) {
+                if (!menuToggle.contains(event.target) && !menuDropdown.contains(event.target)) {
+                    menuDropdown.classList.add('hidden');
+                    menuIcon.setAttribute('data-feather', 'chevron-down');
+                    feather.replace();
+                }
+            });
+        });
         
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    // Close menu after clicking
+                    document.getElementById('menu-dropdown').classList.add('hidden');
+                }
+            });
+        });
+
+        // Generate floating music notes
+        function createMusicNotes() {
+            const container = document.getElementById('musicNotes');
+            const notes = ['♪', '♫', '♬', '♩', '🎵', '🎶'];
+            
+            for (let i = 0; i < 15; i++) {
+                const note = document.createElement('span');
+                note.className = 'note';
+                note.textContent = notes[Math.floor(Math.random() * notes.length)];
+                note.style.left = Math.random() * 100 + '%';
+                note.style.animationDelay = Math.random() * 15 + 's';
+                note.style.animationDuration = (15 + Math.random() * 10) + 's';
+                note.style.fontSize = (16 + Math.random() * 20) + 'px';
+                container.appendChild(note);
+            }
+        }
+        createMusicNotes();
+
+        // Reveal sections on scroll
+        function revealOnScroll() {
+            const sections = document.querySelectorAll('.reveal-section');
+            const windowHeight = window.innerHeight;
+            
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                if (sectionTop < windowHeight * 0.85) {
+                    section.classList.add('visible');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
+
+        // Dynamic inkblot movement based on mouse
+        document.addEventListener('mousemove', function(e) {
+            const inkblots = document.querySelectorAll('.inkblot');
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            inkblots.forEach((inkblot, index) => {
+                const speed = (index + 1) * 0.02;
+                const x = (mouseX - 0.5) * speed * 100;
+                const y = (mouseY - 0.5) * speed * 100;
+                inkblot.style.transform = `translate(${x}px, ${y}px)`;
             });
         });
     </script>
-    <style>
-        #cusdis_thread {
-            background-color: rgba(20, 20, 20, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 0.5rem;
-        }
-        #cusdis_thread iframe {
-            background-color: transparent !important;
-            color: #fff !important;
-            font-family: 'Montserrat', sans-serif;
-        }
-    </style>
 </body>
 </html>
+

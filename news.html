@@ -2,82 +2,414 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>News & Events | Vincent Mano</title>
+    <meta name="description" content="Latest news and events from Vincent Mano">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
+        
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html::before,
+        html::after,
+        body::before,
+        body::after {
+            display: none !important;
+        }
+        
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: #000;
+            background-color: #0a0a0a;
             color: #fff;
-            position: relative;
-            z-index: 1;
+            overflow-x: hidden;
         }
-        body::before {
-            content: "";
-            background-image: url('https://huggingface.co/spaces/Vinni3mac/polished-sonic-artifacts/resolve/main/images/F0A5200F-4E3D-4625-9F78-0D465ACEC581.PNG');
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: contain;
-            opacity: 0.6;
+
+        /* Animated Inkblot Background */
+        .inkblot-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
+        }
+
+        .inkblot {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.4;
+            animation: inkblotPulse 8s ease-in-out infinite;
+        }
+
+        .inkblot-1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(ellipse, #1a1a2e 0%, #2d132c 50%, transparent 70%);
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .inkblot-2 {
+            width: 500px;
+            height: 300px;
+            background: radial-gradient(ellipse, #16213e 0%, #1a1a2e 50%, transparent 70%);
+            top: 30%;
+            right: 10%;
+            animation-delay: 2s;
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        }
+
+        .inkblot-3 {
+            width: 350px;
+            height: 450px;
+            background: radial-gradient(ellipse, #2d132c 0%, #1a1a2e 50%, transparent 70%);
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        }
+
+        .inkblot-4 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(ellipse, #0f3460 0%, #16213e 50%, transparent 70%);
+            top: 60%;
+            right: 5%;
+            animation-delay: 1s;
+        }
+
+        .inkblot-5 {
+            width: 450px;
+            height: 350px;
+            background: radial-gradient(ellipse, #1a1a2e 0%, #2d132c 50%, transparent 70%);
+            top: 80%;
+            left: 40%;
+            animation-delay: 3s;
+            border-radius: 70% 30% 50% 50% / 30% 70% 30% 70%;
+        }
+
+        @keyframes inkblotPulse {
+            0%, 100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 0.3;
+            }
+            50% {
+                transform: scale(1.2) rotate(5deg);
+                opacity: 0.5;
+            }
+        }
+
+        /* Floating Music Notes */
+        .music-notes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
         }
+
+        .note {
+            position: absolute;
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.1);
+            animation: floatNote 15s linear infinite;
+        }
+
+        @keyframes floatNote {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Event Card Animation */
         .event-card {
-            transition: transform 0.3s ease;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
         }
+
+        .event-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .event-card:hover::before {
+            left: 100%;
+        }
+
         .event-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(139, 0, 0, 0.3);
+        }
+
+        .event-card:hover h2 {
+            color: #ff6b6b;
+        }
+
+        /* Featured Card (Charity) */
+        .featured-card {
+            background: linear-gradient(135deg, rgba(88, 28, 135, 0.6) 0%, rgba(30, 64, 175, 0.6) 100%);
+            animation: featuredPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes featuredPulse {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(139, 92, 246, 0.5);
+            }
+        }
+
+        /* Glowing Text Effect */
+        .glow-text {
+            transition: all 0.3s ease;
+        }
+
+        .glow-text:hover {
+            text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+        }
+
+        /* Sound Wave Button */
+        .sound-wave-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .sound-wave-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+            border-radius: 50%;
+        }
+
+        .sound-wave-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .sound-wave-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Ripple Effect */
+        .ripple {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ripple:active::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            animation: rippleEffect 0.6s ease-out;
+        }
+
+        @keyframes rippleEffect {
+            to {
+                transform: translate(-50%, -50%) scale(40);
+                opacity: 0;
+            }
+        }
+
+        /* Wave Section */
+        .wave-section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wave-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.02), transparent);
+            animation: waveMove 8s linear infinite;
+        }
+
+        @keyframes waveMove {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(50%); }
+        }
+
+        /* Staggered card animation */
+        .event-card {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: cardFadeIn 0.6s ease forwards;
+        }
+
+        @keyframes cardFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .event-card:nth-child(1) { animation-delay: 0.1s; }
+        .event-card:nth-child(2) { animation-delay: 0.2s; }
+        .event-card:nth-child(3) { animation-delay: 0.3s; }
+        .event-card:nth-child(4) { animation-delay: 0.4s; }
+        .event-card:nth-child(5) { animation-delay: 0.5s; }
+
+        /* Social Icon Animation */
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px) scale(1.2);
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+        }
+
+        /* Date badge */
+        .date-badge {
+            background: linear-gradient(135deg, #333 0%, #555 100%);
+            transition: all 0.3s ease;
+        }
+
+        .event-card:hover .date-badge {
+            background: linear-gradient(135deg, #cc0000 0%, #ff4444 100%);
+        }
+
+        /* Image hover effect */
+        .news-image {
+            transition: all 0.5s ease;
+        }
+
+        .news-image:hover {
+            transform: scale(1.05) rotate(1deg);
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.4);
+        }
+
+        /* Heart icon animation */
+        .heart-icon {
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* Nav styling */
+        nav {
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        /* Spotify embed container */
+        .spotify-container {
+            transition: all 0.3s ease;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .spotify-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 30px rgba(30, 215, 96, 0.3);
         }
     </style>
 </head>
 <body class="antialiased">
+    <!-- Animated Inkblot Background -->
+    <div class="inkblot-bg">
+        <div class="inkblot inkblot-1"></div>
+        <div class="inkblot inkblot-2"></div>
+        <div class="inkblot inkblot-3"></div>
+        <div class="inkblot inkblot-4"></div>
+        <div class="inkblot inkblot-5"></div>
+    </div>
+
+    <!-- Floating Music Notes -->
+    <div class="music-notes" id="musicNotes"></div>
+
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-black bg-opacity-90 py-4 px-6">
+    <nav class="fixed w-full z-50 bg-black bg-opacity-80 py-4 px-6">
         <div class="container mx-auto flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-white">Vincent Mano</a>
-            <div class="relative hidden">
-                <div class="relative hidden">
-                    <button id="menu-toggle" class="hidden text-white bg-red-600 px-3 py-1 rounded flex items-center space-x-1">
-                        <span>Menu</span>
-                        <i id="menu-icon" data-feather="chevron-down" class="w-4 h-4"></i>
-                    </button>
-                    <div id="menu-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-black bg-opacity-90 border border-red-600 rounded-md shadow-lg hidden z-50">
-<a href="index.html#music" class="block px-4 py-2 text-white hover:bg-red-600 transition">Music</a>
-                    <a href="index.html#about" class="block px-4 py-2 text-white hover:bg-red-600 transition">About</a>
-                    <a href="index.html#contact" class="block px-4 py-2 text-white hover:bg-red-600 transition">Contact</a>
-                    <a href="index.html#upcoming" class="block px-4 py-2 text-white hover:bg-red-600 transition">Upcoming</a>
-                    <a href="news.html" class="block px-4 py-2 text-white hover:bg-red-600 transition">News</a>
-                    <a href="tour-dates.html" class="block px-4 py-2 text-white hover:bg-red-600 transition">Tour Dates</a>
-</div>
-            </div>
-</div>
+            <a href="index.html" class="text-2xl font-bold text-white glow-text">Vincent Mano</a>
+            <a href="index.html" class="text-white bg-red-600 px-4 py-2 rounded-lg sound-wave-btn ripple">
+                <span class="relative z-10">← Back</span>
+            </a>
+        </div>
     </nav>
 
     <!-- Main Content -->
-    <section class="min-h-screen pt-32 pb-20 px-6">
+    <section class="min-h-screen pt-32 pb-20 px-6 wave-section">
         <div class="container mx-auto">
-            <h1 class="text-5xl font-bold mb-12 text-center">News & Events</h1>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <!-- Charity Raffle Announcement -->
-                <div class="event-card bg-gradient-to-r from-purple-800 to-blue-600 p-6 rounded-xl border border-white border-opacity-20">
-                    <h2 class="text-2xl font-bold mb-4">🎉 Artist Spotlight Charity Raffle — Winner Announcement 🎉</h2>
-                    <div class="flex flex-col md:flex-row items-center mb-4">
-                            <img src="https://huggingface.co/spaces/Vinni3mac/polished-sonic-artifacts/resolve/main/images/IMG_2964.JPG" alt="Vincent Mano" class="w-full md:w-1/3 rounded-lg shadow-lg mb-4 md:mb-0 md:mr-6 hover:scale-105 transition-transform duration-300 hovered-element">
-<div>
-                            <p class="text-gray-300 mb-4">
-                                We're thrilled to announce that Ellen F. from Columbus, Ohio is the winner of our charity raffle! 
+            <h1 class="text-5xl font-bold mb-4 text-center glow-text">News & Events</h1>
+            <p class="text-center text-gray-400 mb-12">🎵 Stay updated with the latest from Vincent Mano 🎵</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                
+                <!-- Charity Raffle Announcement - Featured -->
+                <div class="event-card featured-card md:col-span-2 p-8 rounded-xl border border-purple-500 border-opacity-30">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-gradient-to-r from-yellow-500 to-orange-500 text-black px-3 py-1 rounded-full text-sm font-bold mr-3">✨ FEATURED</span>
+                        <h2 class="text-2xl md:text-3xl font-bold transition-colors">🎉 Artist Spotlight Charity Raffle — Winner Announcement 🎉</h2>
+                    </div>
+                    <div class="flex flex-col md:flex-row items-center mb-6">
+                        <img src="https://huggingface.co/spaces/Vinni3mac/polished-sonic-artifacts/resolve/main/images/IMG_2964.JPG" alt="Vincent Mano" class="news-image w-full md:w-1/3 rounded-lg shadow-lg mb-4 md:mb-0 md:mr-6">
+                        <div>
+                            <p class="text-gray-200 mb-4 text-lg">
+                                We're thrilled to announce that <strong class="text-yellow-400">Ellen F. from Columbus, Ohio</strong> is the winner of our charity raffle! 
                                 Ellen, thank you for your incredible love and support - congratulations! The signed "Polished Artifacts" 
                                 vinyl prize comes with all proceeds benefiting programs for children impacted by abusive homes.
                             </p>
-                            <p class="text-gray-300 mb-4">
+                            <p class="text-gray-200 mb-4">
                                 To all my amazing fans: without you, I wouldn't be able to keep chasing this incredible dream. 
                                 Your support means everything to me. Thank you from the bottom of my heart, and I can't wait to see you 
                                 at the next show!
@@ -85,74 +417,129 @@
                         </div>
                     </div>
                     <div class="flex items-center text-gray-300">
-                        <i data-feather="heart" class="mr-2"></i>
-                        <span>July 2025 | Charity Event</span>
-</div>
+                        <i data-feather="heart" class="mr-2 heart-icon text-red-500"></i>
+                        <span class="date-badge px-3 py-1 rounded-full text-sm">July 2025 | Charity Event</span>
+                    </div>
                 </div>
-    <!-- Event Card 1 -->
-                <div class="event-card bg-black bg-opacity-30 p-6 rounded-xl border border-white border-opacity-10">
-<h2 class="text-2xl font-bold mb-4">Album Recording Sessions</h2>
+
+                <!-- Tour News - Important Update -->
+                <div class="event-card md:col-span-2 bg-gradient-to-br from-red-900/40 to-black/60 p-6 rounded-xl border border-red-500 border-opacity-30">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-red-600 text-white px-3 py-1 rounded-full text-sm font-bold mr-3 animate-pulse">📢 IMPORTANT</span>
+                        <h2 class="text-2xl font-bold transition-colors">Tour Update</h2>
+                    </div>
+                    <div class="text-gray-300 space-y-4">
+                        <p>To all fans and supporters,</p>
+                        <p>Vincent Mano and his team regret to inform you that, as of October 1, 2025, any and all scheduled performances will be postponed. This decision comes due to personal reasons and time constraints that would not allow the shows to meet the standard of excellence that fans deserve.</p>
+                        <p>This step is being taken out of respect for those who have supported the music and purchased tickets—ensuring that no one is denied the best possible experience. Vincent is committed to delivering performances that are worth the wait and will be working tirelessly in preparation for when the tour officially launches.</p>
+                        <p>We deeply apologize for the disappointment and inconvenience this may cause, and we thank you sincerely for your understanding, patience, and unwavering support. More details regarding rescheduled dates will be announced as soon as they are available.</p>
+                        <p class="font-semibold">With gratitude,<br>The Vincent Mano Team</p>
+                    </div>
+                    <div class="flex items-center text-gray-400 mt-4">
+                        <i data-feather="calendar" class="mr-2"></i>
+                        <span class="date-badge px-3 py-1 rounded-full text-sm">October 1, 2025</span>
+                    </div>
+                </div>
+
+                <!-- Album Recording Sessions -->
+                <div class="event-card bg-black/40 p-6 rounded-xl border border-white border-opacity-20">
+                    <h2 class="text-2xl font-bold mb-4 transition-colors">🎙️ Album Recording Sessions</h2>
                     <p class="text-gray-300 mb-4">Vincent is currently in the studio working on his upcoming album "Inkblots and Photographs" set for release in early 2026.</p>
                     <div class="flex items-center text-gray-400">
                         <i data-feather="calendar" class="mr-2"></i>
-                        <span>Ongoing - Fall 2024</span>
+                        <span class="date-badge px-3 py-1 rounded-full text-sm">Ongoing - Fall 2024</span>
                     </div>
                 </div>
-                <!-- Event Card 2 -->
-                <div class="event-card bg-black bg-opacity-50 p-6 rounded-xl border border-white border-opacity-20">
-                    <h2 class="text-2xl font-bold mb-4">New Single Released</h2>
+
+                <!-- New Single Released -->
+                <div class="event-card bg-black/40 p-6 rounded-xl border border-white border-opacity-20">
+                    <h2 class="text-2xl font-bold mb-4 transition-colors">🎧 New Single Released</h2>
                     <p class="text-gray-300 mb-4">First single from the upcoming album "Inkblots and Photographs" is now available exclusively on Spotify for members, with full release coming soon!</p>
-                    <div class="flex justify-center mb-4">
-                        <iframe src="https://open.spotify.com/embed/track/56TlKU3bCS8DXXjHFUpJ29" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                    <div class="spotify-container flex justify-center mb-4">
+                        <iframe src="https://open.spotify.com/embed/track/56TlKU3bCS8DXXjHFUpJ29" width="100%" height="352" frameborder="0" allowtransparency="true" allow="encrypted-media" style="border-radius: 12px;"></iframe>
                     </div>
                     <div class="flex items-center text-gray-400">
-                        <i data-feather="calendar" class="mr-2"></i>
-                        <span>Available now (Spotify members)</span>
+                        <i data-feather="music" class="mr-2"></i>
+                        <span class="date-badge px-3 py-1 rounded-full text-sm">Available now (Spotify members)</span>
                     </div>
                 </div>
-<!-- Event Card 3 -->
-                <div class="event-card bg-black bg-opacity-50 p-6 rounded-xl border border-white border-opacity-20">
-                    <h2 class="text-2xl font-bold mb-4">2026 Tour Announcement</h2>
+
+                <!-- 2026 Tour Announcement -->
+                <div class="event-card bg-black/40 p-6 rounded-xl border border-white border-opacity-20">
+                    <h2 class="text-2xl font-bold mb-4 transition-colors">🎸 2026 Tour Announcement</h2>
                     <p class="text-gray-300 mb-4">Tour dates coming soon! Vincent will be hitting major cities across the US to support the new album.</p>
+                    <a href="tour-dates.html" class="inline-block bg-gradient-to-r from-red-600 to-red-800 text-white px-4 py-2 rounded-full font-semibold sound-wave-btn ripple mb-4">
+                        <span class="relative z-10">View Tour Dates →</span>
+                    </a>
                     <div class="flex items-center text-gray-400">
-                        <i data-feather="calendar" class="mr-2"></i>
-                        <span>Early 2026</span>
+                        <i data-feather="map-pin" class="mr-2"></i>
+                        <span class="date-badge px-3 py-1 rounded-full text-sm">Early 2026</span>
                     </div>
                 </div>
-                <!-- Event Card 4 -->
-                <div class="event-card bg-black bg-opacity-50 p-6 rounded-xl border border-white border-opacity-20">
-                    <h2 class="text-2xl font-bold mb-4">Tour News</h2>
-                    <p class="text-gray-300 mb-4">To all fans and supporters,<br><br>
-                    Vincent Mano and his team regret to inform you that, as of October 1, 2025, any and all scheduled performances will be postponed. This decision comes due to personal reasons and time constraints that would not allow the shows to meet the standard of excellence that fans deserve.<br><br>
-                    This step is being taken out of respect for those who have supported the music and purchased tickets—ensuring that no one is denied the best possible experience. Vincent is committed to delivering performances that are worth the wait and will be working tirelessly in preparation for when the tour officially launches.<br><br>
-                    We deeply apologize for the disappointment and inconvenience this may cause, and we thank you sincerely for your understanding, patience, and unwavering support. More details regarding rescheduled dates will be announced as soon as they are available.<br><br>
-                    With gratitude,<br>
-                    The Vincent Mano Team</p>
-                    <div class="flex items-center text-gray-400">
-                        <i data-feather="calendar" class="mr-2"></i>
-                        <span>October 1, 2025</span>
-                    </div>
-                </div>
-</div>
+
+            </div>
 
             <div class="text-center mt-16">
-                <a href="index.html" class="inline-block bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition">
-                    Back to Main
+                <a href="index.html" class="inline-block bg-white text-black px-8 py-4 rounded-full font-semibold sound-wave-btn ripple text-lg">
+                    <span class="relative z-10">← Back to Main</span>
                 </a>
             </div>
         </div>
     </section>
 
-    <footer class="py-12 bg-transparent">
-<div class="container mx-auto px-6 text-center">
-            <div class="text-gray-400 text-sm">
-                &copy; 2024 Vincent Mano. All rights reserved.
+    <footer class="py-12 bg-black bg-opacity-80 backdrop-blur-lg">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <a href="index.html" class="text-2xl font-bold text-white glow-text">Vincent Mano</a>
+                </div>
+                <div class="flex space-x-6 mb-6 md:mb-0">
+                    <a href="https://www.instagram.com/vincemano" class="social-icon text-white">
+                        <i data-feather="instagram"></i>
+                    </a>
+                </div>
+                <div class="text-gray-400 text-sm">
+                    &copy; 2024 Vincent Mano. All rights reserved.
+                </div>
             </div>
         </div>
     </footer>
 
     <script>
         feather.replace();
+
+        // Generate floating music notes
+        function createMusicNotes() {
+            const container = document.getElementById('musicNotes');
+            const notes = ['♪', '♫', '♬', '♩', '🎵', '🎶'];
+            
+            for (let i = 0; i < 15; i++) {
+                const note = document.createElement('span');
+                note.className = 'note';
+                note.textContent = notes[Math.floor(Math.random() * notes.length)];
+                note.style.left = Math.random() * 100 + '%';
+                note.style.animationDelay = Math.random() * 15 + 's';
+                note.style.animationDuration = (15 + Math.random() * 10) + 's';
+                note.style.fontSize = (16 + Math.random() * 20) + 'px';
+                container.appendChild(note);
+            }
+        }
+        createMusicNotes();
+
+        // Dynamic inkblot movement based on mouse
+        document.addEventListener('mousemove', function(e) {
+            const inkblots = document.querySelectorAll('.inkblot');
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            inkblots.forEach((inkblot, index) => {
+                const speed = (index + 1) * 0.02;
+                const x = (mouseX - 0.5) * speed * 100;
+                const y = (mouseY - 0.5) * speed * 100;
+                inkblot.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        });
     </script>
 </body>
 </html>
+

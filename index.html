@@ -437,36 +437,64 @@
             transform: translateY(0);
         }
 
-        /* Cusdis styling */
-        #cusdis_thread {
-            background-color: rgba(20, 20, 20, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 0.5rem;
-        }
-
-        #cusdis_thread iframe {
-            background-color: transparent !important;
-        }
-
         /* Form Input Animation */
         .animated-input {
             transition: all 0.3s ease;
-            border: 1px solid #333;
+            border: 2px solid #444;
+            background-color: rgba(20, 20, 30, 0.9) !important;
+            color: #ffffff !important;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            pointer-events: auto;
+            user-select: text;
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
         }
 
         .animated-input:focus {
             border-color: #ff4444;
-            box-shadow: 0 0 15px rgba(255, 68, 68, 0.3);
+            box-shadow: 0 0 20px rgba(255, 68, 68, 0.4);
             transform: scale(1.02);
+            outline: none;
+            background-color: rgba(30, 30, 40, 1) !important;
         }
 
         .animated-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
             transition: all 0.3s ease;
         }
 
         .animated-input:focus::placeholder {
-            opacity: 0.5;
-            transform: translateX(10px);
+            opacity: 0.3;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .animated-input:hover {
+            border-color: #666;
+        }
+
+        /* Ensure textarea is scrollable and editable */
+        textarea.animated-input {
+            resize: vertical;
+            min-height: 120px;
+            line-height: 1.5;
+        }
+
+        /* Form Group */
+        .form-group {
+            position: relative;
+        }
+
+        .form-group label {
+            transition: all 0.3s ease;
+        }
+
+        .form-group:focus-within label {
+            color: #ff4444;
         }
 
         /* Submit Button */
@@ -475,6 +503,7 @@
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
+            border: none;
         }
 
         .submit-btn::before {
@@ -496,6 +525,16 @@
             background: linear-gradient(135deg, #cc0000 0%, #ff4444 100%);
             transform: translateY(-2px);
             box-shadow: 0 10px 20px rgba(255, 68, 68, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 5px 10px rgba(255, 68, 68, 0.2);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
         }
 
         /* Nav styling */
@@ -627,23 +666,7 @@
         </div>
     </section>
 
-    <!-- Comment Section -->
-    <section id="comments" class="py-20 wave-section reveal-section">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-12 text-center glow-text">Let me know what you think!</h2>
-            <div id="cusdis_thread" 
-                 data-host="https://cusdis.com"
-                 data-app-id="9d55e686-51fe-4129-8e93-d2b06b0f96ce"
-                 data-page-id="page-home"
-                 data-page-url="https://vincentmano.com"
-                 data-page-title="Home Page"
-                 data-theme="dark"
-                 class="max-w-4xl mx-auto rounded-lg overflow-hidden shadow-2xl">
-            </div>
-        </div>
-    </section>
 
-    <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
 
     <!-- About Section -->
     <section id="about" class="py-20 wave-section reveal-section">
@@ -706,15 +729,40 @@
         <div class="container mx-auto px-6">
             <div class="max-w-lg mx-auto">
                 <h2 class="text-4xl font-bold mb-8 text-center glow-text">Contact Me</h2>
-                <form action="https://formspree.io/f/mpqjaqgd" method="POST" class="flex flex-col gap-4">
-                    <input type="text" name="name" placeholder="Your Name" required
-                           class="animated-input p-4 text-lg bg-gray-900 text-white rounded-lg outline-none">
-                    <input type="email" name="email" placeholder="Your Email" required
-                           class="animated-input p-4 text-lg bg-gray-900 text-white rounded-lg outline-none">
-                    <textarea name="message" placeholder="Your Message" rows="5" required
-                           class="animated-input p-4 text-lg bg-gray-900 text-white rounded-lg outline-none resize-none"></textarea>
+                <form action="https://formspree.io/f/mpqjaqgd" method="POST" class="flex flex-col gap-5" id="contact-form">
+                    <div class="form-group">
+                        <label for="name" class="block text-sm text-gray-400 mb-2">Your Name</label>
+                        <input type="text" 
+                               id="name"
+                               name="name" 
+                               placeholder="Enter your name" 
+                               required
+                               autocomplete="name"
+                               class="animated-input w-full p-4 text-lg rounded-lg">
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="block text-sm text-gray-400 mb-2">Your Email</label>
+                        <input type="email" 
+                               id="email"
+                               name="email" 
+                               placeholder="Enter your email" 
+                               required
+                               autocomplete="email"
+                               class="animated-input w-full p-4 text-lg rounded-lg">
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="block text-sm text-gray-400 mb-2">Your Message</label>
+                        <textarea id="message"
+                                  name="message" 
+                                  placeholder="Type your message here..." 
+                                  rows="6" 
+                                  required
+                                  class="animated-input w-full p-4 text-lg rounded-lg"></textarea>
+                    </div>
                     <input type="hidden" name="_captcha" value="true">
-                    <button type="submit" class="submit-btn p-4 text-lg text-white rounded-lg cursor-pointer font-semibold">
+                    <input type="hidden" name="_subject" value="New message from Vincent Mano website">
+                    <button type="submit" class="submit-btn p-4 text-lg text-white rounded-lg cursor-pointer font-semibold flex items-center justify-center gap-2">
+                        <i data-feather="send" class="w-5 h-5"></i>
                         Send Message
                     </button>
                 </form>
@@ -837,4 +885,5 @@
     </script>
 </body>
 </html>
+
 

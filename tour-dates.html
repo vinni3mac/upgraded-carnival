@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Vincent Mano | Polished Artifacts</title>
-    <meta name="description" content="Official website of Vincent Mano, alternative rock/electronic pop musician from Woodland Hills, California. Featuring the album 'Polished Artifacts'">
+    <title>Vincent Mano | Tour Dates</title>
+    <meta name="description" content="Upcoming tour dates for Vincent Mano">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <style>
@@ -22,7 +22,6 @@
             box-sizing: border-box;
         }
         
-        /* Hide any stray text nodes */
         html::before,
         html::after,
         body::before,
@@ -152,7 +151,51 @@
             }
         }
 
-        /* Animated Sound Wave Button */
+        /* Tour Date Card Animation */
+        .tour-date {
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            background: rgba(20, 20, 30, 0.4);
+            backdrop-filter: blur(10px);
+        }
+
+        .tour-date::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .tour-date:hover::before {
+            left: 100%;
+        }
+
+        .tour-date:hover {
+            transform: translateY(-5px) scale(1.02);
+            background: rgba(139, 0, 0, 0.2);
+            border-color: rgba(255, 68, 68, 0.5);
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.3);
+        }
+
+        .tour-date:hover h3 {
+            color: #ff6b6b;
+        }
+
+        /* Glowing Text Effect */
+        .glow-text {
+            transition: all 0.3s ease;
+        }
+
+        .glow-text:hover {
+            text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+        }
+
+        /* Sound Wave Button */
         .sound-wave-btn {
             position: relative;
             overflow: hidden;
@@ -182,140 +225,6 @@
             box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
         }
 
-        /* Equalizer Button Effect */
-        .equalizer-btn {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .equalizer-btn .eq-bars {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: space-evenly;
-            align-items: flex-end;
-            padding: 5px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .equalizer-btn:hover .eq-bars {
-            opacity: 0.5;
-        }
-
-        .eq-bar {
-            width: 3px;
-            background: currentColor;
-            animation: eqBounce 0.5s ease-in-out infinite alternate;
-        }
-
-        .eq-bar:nth-child(1) { animation-delay: 0s; }
-        .eq-bar:nth-child(2) { animation-delay: 0.1s; }
-        .eq-bar:nth-child(3) { animation-delay: 0.2s; }
-        .eq-bar:nth-child(4) { animation-delay: 0.15s; }
-        .eq-bar:nth-child(5) { animation-delay: 0.05s; }
-
-        @keyframes eqBounce {
-            0% { height: 20%; }
-            100% { height: 80%; }
-        }
-
-        /* Pulse Ring Animation for Links */
-        .pulse-link {
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .pulse-link::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 100%;
-            height: 100%;
-            border: 2px solid currentColor;
-            border-radius: inherit;
-            transform: translate(-50%, -50%);
-            opacity: 0;
-            animation: none;
-        }
-
-        .pulse-link:hover::after {
-            animation: pulseRing 1s ease-out infinite;
-        }
-
-        @keyframes pulseRing {
-            0% {
-                width: 100%;
-                height: 100%;
-                opacity: 0.8;
-            }
-            100% {
-                width: 150%;
-                height: 150%;
-                opacity: 0;
-            }
-        }
-
-        /* Glowing Text Effect */
-        .glow-text {
-            transition: all 0.3s ease;
-        }
-
-        .glow-text:hover {
-            text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
-        }
-
-        /* Vinyl Spin Animation */
-        .vinyl-spin:hover {
-            animation: vinylRotate 3s linear infinite;
-        }
-
-        @keyframes vinylRotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        /* Wave Background for Sections */
-        .wave-section {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .wave-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -50%;
-            width: 200%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.02), transparent);
-            animation: waveMove 8s linear infinite;
-        }
-
-        @keyframes waveMove {
-            0% { transform: translateX(-50%); }
-            100% { transform: translateX(50%); }
-        }
-
-        /* Neon Border Animation */
-        .neon-border {
-            position: relative;
-            border: 2px solid transparent;
-            background: linear-gradient(#0a0a0a, #0a0a0a) padding-box,
-                        linear-gradient(90deg, #ff0000, #ff6b6b, #ff0000) border-box;
-            background-size: 100% 100%, 200% 100%;
-            animation: neonFlow 3s linear infinite;
-        }
-
-        @keyframes neonFlow {
-            0% { background-position: 0% 0%, 0% 0%; }
-            100% { background-position: 0% 0%, 200% 0%; }
-        }
-
         /* Ripple Effect */
         .ripple {
             position: relative;
@@ -342,90 +251,29 @@
             }
         }
 
-        /* Hero gradient with animation */
-        .hero-gradient {
-            background: transparent;
-        }
-
-        .album-cover {
-            transition: all 0.5s ease;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-        }
-
-        .album-cover:hover {
-            transform: scale(1.05) rotate(2deg);
-            box-shadow: 0 30px 60px -12px rgba(139, 0, 0, 0.4);
-        }
-
-        .social-icon {
-            transition: all 0.3s ease;
-        }
-
-        .social-icon:hover {
-            transform: translateY(-5px) scale(1.2);
-            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
-        }
-
-        .music-player {
-            background: rgba(20, 20, 30, 0.6);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* Menu Animation */
-        .menu-item {
+        /* Wave Section */
+        .wave-section {
             position: relative;
             overflow: hidden;
         }
 
-        .menu-item::before {
-            content: '♪';
+        .wave-section::before {
+            content: '';
             position: absolute;
-            left: -20px;
-            opacity: 0;
-            transition: all 0.3s ease;
+            top: 0;
+            left: -50%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.02), transparent);
+            animation: waveMove 8s linear infinite;
         }
 
-        .menu-item:hover::before {
-            left: 10px;
-            opacity: 1;
+        @keyframes waveMove {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(50%); }
         }
 
-        .menu-item:hover {
-            padding-left: 30px;
-        }
-
-        /* Instrument Tags Animation */
-        .instrument-tag {
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .instrument-tag:hover {
-            background: linear-gradient(135deg, #ff4444, #cc0000);
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 5px 15px rgba(255, 68, 68, 0.4);
-        }
-
-        /* Spotify Green Glow */
-        .spotify-btn {
-            transition: all 0.3s ease;
-        }
-
-        .spotify-btn:hover {
-            box-shadow: 0 0 20px rgba(30, 215, 96, 0.6), 0 0 40px rgba(30, 215, 96, 0.3);
-        }
-
-        /* Apple Music Glow */
-        .apple-btn {
-            transition: all 0.3s ease;
-        }
-
-        .apple-btn:hover {
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.6), 0 0 40px rgba(255, 255, 255, 0.3);
-        }
-
-        /* Section Reveal Animation */
+        /* Reveal Animation */
         .reveal-section {
             opacity: 0;
             transform: translateY(50px);
@@ -437,71 +285,57 @@
             transform: translateY(0);
         }
 
-        /* Cusdis styling */
-        #cusdis_thread {
-            background-color: rgba(20, 20, 20, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 0.5rem;
-        }
-
-        #cusdis_thread iframe {
-            background-color: transparent !important;
-        }
-
-        /* Form Input Animation */
-        .animated-input {
-            transition: all 0.3s ease;
-            border: 1px solid #333;
-        }
-
-        .animated-input:focus {
-            border-color: #ff4444;
-            box-shadow: 0 0 15px rgba(255, 68, 68, 0.3);
-            transform: scale(1.02);
-        }
-
-        .animated-input::placeholder {
+        /* Social Icon Animation */
+        .social-icon {
             transition: all 0.3s ease;
         }
 
-        .animated-input:focus::placeholder {
-            opacity: 0.5;
-            transform: translateX(10px);
+        .social-icon:hover {
+            transform: translateY(-5px) scale(1.2);
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
         }
 
-        /* Submit Button */
-        .submit-btn {
-            background: linear-gradient(135deg, #333 0%, #555 100%);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
+        /* Staggered tour date animation */
+        .tour-date {
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: slideIn 0.5s ease forwards;
         }
 
-        .submit-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s ease;
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
-        .submit-btn:hover::before {
-            left: 100%;
-        }
-
-        .submit-btn:hover {
-            background: linear-gradient(135deg, #cc0000 0%, #ff4444 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(255, 68, 68, 0.3);
-        }
+        .tour-date:nth-child(1) { animation-delay: 0.1s; }
+        .tour-date:nth-child(2) { animation-delay: 0.15s; }
+        .tour-date:nth-child(3) { animation-delay: 0.2s; }
+        .tour-date:nth-child(4) { animation-delay: 0.25s; }
+        .tour-date:nth-child(5) { animation-delay: 0.3s; }
+        .tour-date:nth-child(6) { animation-delay: 0.35s; }
+        .tour-date:nth-child(7) { animation-delay: 0.4s; }
+        .tour-date:nth-child(8) { animation-delay: 0.45s; }
+        .tour-date:nth-child(9) { animation-delay: 0.5s; }
+        .tour-date:nth-child(10) { animation-delay: 0.55s; }
+        .tour-date:nth-child(n+11) { animation-delay: 0.6s; }
 
         /* Nav styling */
         nav {
             backdrop-filter: blur(10px);
             z-index: 1000;
+        }
+
+        /* State badges */
+        .state-badge {
+            background: linear-gradient(135deg, #ff4444, #cc0000);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; box-shadow: 0 0 15px rgba(255, 68, 68, 0.5); }
         }
     </style>
 </head>
@@ -521,216 +355,441 @@
     <!-- Navigation -->
     <nav class="fixed w-full z-50 bg-black bg-opacity-80 py-4 px-6">
         <div class="container mx-auto flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-white glow-text">Vincent Mano</a>
-            <div class="relative">
-                <button id="menu-toggle" class="text-white bg-red-600 px-4 py-2 rounded-lg flex items-center space-x-2 sound-wave-btn ripple neon-border">
-                    <span>Menu</span>
-                    <i id="menu-icon" data-feather="chevron-down" class="w-4 h-4"></i>
-                </button>
-                <div id="menu-dropdown" class="absolute right-0 mt-2 w-48 bg-black bg-opacity-95 border border-red-600 rounded-lg shadow-2xl hidden z-50 overflow-hidden">
-                    <a href="#music" class="menu-item block px-4 py-3 text-white hover:bg-red-600 transition">Music</a>
-                    <a href="#about" class="menu-item block px-4 py-3 text-white hover:bg-red-600 transition">About</a>
-                    <a href="#contact" class="menu-item block px-4 py-3 text-white hover:bg-red-600 transition">Contact</a>
-                    <a href="#upcoming" class="menu-item block px-4 py-3 text-white hover:bg-red-600 transition">Upcoming</a>
-                    <a href="news.html" class="menu-item block px-4 py-3 text-white hover:bg-red-600 transition">News</a>
-                    <a href="tour-dates.html" class="menu-item block px-4 py-3 text-white hover:bg-red-600 transition">Tour Dates</a>
-                </div>
-            </div>
+            <a href="index.html" class="text-2xl font-bold text-white glow-text">Vincent Mano</a>
+            <a href="index.html" class="text-white bg-red-600 px-4 py-2 rounded-lg sound-wave-btn ripple">
+                <span class="relative z-10">← Back</span>
+            </a>
         </div>
     </nav>
 
-    <!-- Hero Section with Top Image -->
-    <div class="w-full h-auto relative">
-        <img src="https://huggingface.co/spaces/Vinni3mac/polished-sonic-artifacts/resolve/main/images/IMG_2390.jpg" alt="Vincent Mano" class="w-full h-auto object-cover" style="max-height: 70vh;">
-        <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40" style="padding-top: 7rem;">
-            <div class="text-center mt-8">
-                <div class="text-4xl md:text-7xl font-bold text-white opacity-80 mb-2 glow-text" style="animation: pulse 2s ease-in-out infinite;">Vincent</div>
-                <div class="text-4xl md:text-7xl font-bold text-white opacity-80 mb-2 glow-text" style="animation: pulse 2s ease-in-out infinite 0.5s;">Mano</div>
-                <div class="text-xl md:text-3xl font-semibold text-white opacity-60 tracking-widest" style="animation: pulse 2s ease-in-out infinite 1s;">MUSIC</div>
+    <!-- Tour Dates Section -->
+    <section class="min-h-screen pt-32 pb-20 wave-section">
+        <div class="container mx-auto px-6">
+            <h1 class="text-5xl font-bold mb-4 text-center glow-text">Tour Dates</h1>
+            <p class="text-center text-gray-400 mb-12">🎸 Catch Vincent Mano live on tour 🎸</p>
+            
+            <div class="max-w-3xl mx-auto space-y-4">
+                <!-- Florida -->
+                <div class="text-center mb-6">
+                    <span class="state-badge inline-block px-4 py-1 rounded-full text-sm font-semibold">🌴 FLORIDA</span>
+                </div>
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-2xl font-semibold transition-colors">Miami, FL</h3>
+                            <p class="text-gray-400">The Fillmore Miami Beach</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl text-red-400">October 7, 2023</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Georgia -->
+                <div class="text-center mb-6 mt-10">
+                    <span class="state-badge inline-block px-4 py-1 rounded-full text-sm font-semibold">🍑 GEORGIA</span>
+                </div>
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-2xl font-semibold transition-colors">Atlanta, GA</h3>
+                            <p class="text-gray-400">The Masquerade</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl text-red-400">October 14, 2023</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-2xl font-semibold transition-colors">Savannah, GA</h3>
+                            <p class="text-gray-400">Victory North</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl text-red-400">October 19, 2023</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-2xl font-semibold transition-colors">Athens, GA</h3>
+                            <p class="text-gray-400">40 Watt Club</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl text-red-400">October 25, 2023</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- South Carolina -->
+                <div class="text-center mb-6 mt-10">
+                    <span class="state-badge inline-block px-4 py-1 rounded-full text-sm font-semibold">🌙 SOUTH CAROLINA</span>
+                </div>
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-2xl font-semibold transition-colors">Charleston, SC</h3>
+                            <p class="text-gray-400">The Music Farm</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl text-red-400">October 28, 2023</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-2xl font-semibold transition-colors">Columbia, SC</h3>
+                            <p class="text-gray-400">The Senate</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl text-red-400">November 2, 2023</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-2xl font-semibold transition-colors">Greenville, SC</h3>
+                            <p class="text-gray-400">The Radio Room</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl text-red-400">November 7, 2023</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Virginia -->
+                <div class="text-center mb-6 mt-10">
+                    <span class="state-badge inline-block px-4 py-1 rounded-full text-sm font-semibold">🏛️ VIRGINIA</span>
+                </div>
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-2xl font-semibold transition-colors">Richmond, VA</h3>
+                            <p class="text-gray-400">The National</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl text-red-400">November 12, 2023</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-2xl font-semibold transition-colors">Norfolk, VA</h3>
+                            <p class="text-gray-400">The NorVa</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl text-red-400">November 18, 2023</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-2xl font-semibold transition-colors">Charlottesville, VA</h3>
+                            <p class="text-gray-400">The Jefferson Theater</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl text-red-400">November 24, 2023</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ohio -->
+                <div class="text-center mb-6 mt-10">
+                    <span class="state-badge inline-block px-4 py-1 rounded-full text-sm font-semibold">🌰 OHIO</span>
+                </div>
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-2xl font-semibold transition-colors">Columbus, OH</h3>
+                            <p class="text-gray-400">Newport Music Hall</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl text-red-400">November 30, 2023</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-2xl font-semibold transition-colors">Cleveland, OH</h3>
+                            <p class="text-gray-400">House of Blues</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl text-red-400">December 5, 2023</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Indiana -->
+                <div class="text-center mb-6 mt-10">
+                    <span class="state-badge inline-block px-4 py-1 rounded-full text-sm font-semibold">🏎️ INDIANA</span>
+                </div>
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-2xl font-semibold transition-colors">Indianapolis, IN</h3>
+                            <p class="text-gray-400">The Vogue</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl text-red-400">December 10, 2023</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Illinois -->
+                <div class="text-center mb-6 mt-10">
+                    <span class="state-badge inline-block px-4 py-1 rounded-full text-sm font-semibold">🌬️ ILLINOIS</span>
+                </div>
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-2xl font-semibold transition-colors">Chicago, IL</h3>
+                            <p class="text-gray-400">Metro</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl text-red-400">December 16, 2023</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-2xl font-semibold transition-colors">Peoria, IL</h3>
+                            <p class="text-gray-400">Limelight Eventplex</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl text-red-400">December 22, 2023</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-2xl font-semibold transition-colors">Springfield, IL</h3>
+                            <p class="text-gray-400">Boondocks</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl text-red-400">December 28, 2023</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Texas -->
+                <div class="text-center mb-6 mt-10">
+                    <span class="state-badge inline-block px-4 py-1 rounded-full text-sm font-semibold">⛤ TEXAS</span>
+                </div>
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-2xl font-semibold transition-colors">Austin, TX</h3>
+                            <p class="text-gray-400">Emo's</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl text-red-400">January 3, 2024</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-2xl font-semibold transition-colors">Dallas, TX</h3>
+                            <p class="text-gray-400">Trees</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl text-red-400">January 9, 2024</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-2xl font-semibold transition-colors">Houston, TX</h3>
+                            <p class="text-gray-400">White Oak Music Hall</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl text-red-400">January 15, 2024</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Washington -->
+                <div class="text-center mb-6 mt-10">
+                    <span class="state-badge inline-block px-4 py-1 rounded-full text-sm font-semibold">🌲 WASHINGTON</span>
+                </div>
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-2xl font-semibold transition-colors">Seattle, WA</h3>
+                            <p class="text-gray-400">Neumos</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl text-red-400">January 20, 2024</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-2xl font-semibold transition-colors">Spokane, WA</h3>
+                            <p class="text-gray-400">Knitting Factory</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl text-red-400">January 24, 2024</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-2xl font-semibold transition-colors">Tacoma, WA</h3>
+                            <p class="text-gray-400">Jazzbones</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl text-red-400">January 28, 2024</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Oregon -->
+                <div class="text-center mb-6 mt-10">
+                    <span class="state-badge inline-block px-4 py-1 rounded-full text-sm font-semibold">🦫 OREGON</span>
+                </div>
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-2xl font-semibold transition-colors">Portland, OR</h3>
+                            <p class="text-gray-400">Wonder Ballroom</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl text-red-400">January 31, 2024</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-2xl font-semibold transition-colors">Corvallis, OR</h3>
+                            <p class="text-gray-400">Bomber Restaurant & Brewery</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl text-red-400">January 30, 2024</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-2xl font-semibold transition-colors">Bend, OR</h3>
+                            <p class="text-gray-400">Volcanic Theatre Pub</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl text-red-400">February 1, 2024</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-2xl font-semibold transition-colors">Eugene, OR</h3>
+                            <p class="text-gray-400">WOW Hall</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl text-red-400">February 3, 2024</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- California -->
+                <div class="text-center mb-6 mt-10">
+                    <span class="state-badge inline-block px-4 py-1 rounded-full text-sm font-semibold">☀️ CALIFORNIA</span>
+                </div>
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-2xl font-semibold transition-colors">Sacramento, CA</h3>
+                            <p class="text-gray-400">Ace of Spades</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl text-red-400">February 3, 2024</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-2xl font-semibold transition-colors">Los Angeles, CA</h3>
+                            <p class="text-gray-400">The Roxy Theatre</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl text-red-400">February 6, 2024</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-2xl font-semibold transition-colors">San Francisco, CA</h3>
+                            <p class="text-gray-400">The Fillmore</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl text-red-400">February 10, 2024</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-2xl font-semibold transition-colors">San Diego, CA</h3>
+                            <p class="text-gray-400">Music Box</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl text-red-400">February 14, 2024</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
+
+    <div class="text-center py-12">
+        <a href="index.html" class="inline-block bg-white text-black px-8 py-4 rounded-full font-semibold sound-wave-btn ripple text-lg">
+            <span class="relative z-10">← Back to Main</span>
+        </a>
     </div>
 
-    <style>
-        @keyframes pulse {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 1; text-shadow: 0 0 20px rgba(255,255,255,0.5); }
-        }
-    </style>
-
-    <section class="hero-gradient min-h-screen flex items-center justify-center pt-8 wave-section reveal-section">
-        <div class="container mx-auto px-6 py-12 flex flex-col md:flex-row items-center">
-            <div class="md:w-1/2 mb-12 md:mb-0">
-                <h1 class="text-5xl md:text-7xl font-bold mb-6 glow-text">Polished Artifacts</h1>
-                <p class="text-xl mb-8 text-gray-300">The latest album from Vincent Mano - now streaming everywhere</p>
-                <div class="flex flex-wrap gap-4 mb-12">
-                    <a href="https://music.apple.com/us/album/polished-artifacts/1773404345" class="apple-btn bg-white text-black px-6 py-3 rounded-full font-semibold sound-wave-btn ripple pulse-link">
-                        <span class="relative z-10">Apple Music</span>
-                    </a>
-                    <a href="https://open.spotify.com/album/3V5DPaGBJgrYOVh8DSDT1a?si=3xqathPRThKY17gt-lipHg" class="spotify-btn bg-green-500 text-white px-6 py-3 rounded-full font-semibold equalizer-btn ripple pulse-link">
-                        <span class="relative z-10">Spotify</span>
-                        <div class="eq-bars">
-                            <div class="eq-bar"></div>
-                            <div class="eq-bar"></div>
-                            <div class="eq-bar"></div>
-                            <div class="eq-bar"></div>
-                            <div class="eq-bar"></div>
-                        </div>
-                    </a>
-                </div>
-                <div class="flex space-x-6">
-                    <a href="https://www.instagram.com/vincemano" class="social-icon text-white">
-                        <i data-feather="instagram"></i>
-                    </a>
-                </div>
-            </div>
-            <div class="md:w-1/2 flex justify-center">
-                <img src="https://huggingface.co/spaces/Vinni3mac/polished-sonic-artifacts/resolve/main/images/Scan 1.jpeg" alt="Polished Artifacts Album Cover" class="album-cover vinyl-spin rounded-lg shadow-2xl w-full max-w-md cursor-pointer">
-            </div>
-        </div>
-    </section>
-
-    <!-- Music Section -->
-    <section id="music" class="py-20 wave-section reveal-section">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-12 text-center glow-text">Music</h2>
-            <div class="music-player rounded-xl p-8 max-w-4xl mx-auto">
-                <h3 class="text-2xl font-semibold mb-6">Polished Artifacts</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                    <div class="bg-black bg-opacity-50 p-4 rounded-lg border border-transparent hover:border-red-600 transition-all duration-300">
-                        <h4 class="font-semibold mb-2">1. Tell Me That You Mean It</h4>
-                        <iframe allow="autoplay *; encrypted-media *;" frameborder="0" height="150" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/us/album/tell-me-that-you-mean-it/1773404345?i=1773404981"></iframe>
-                    </div>
-                    <div class="bg-black bg-opacity-50 p-4 rounded-lg border border-transparent hover:border-red-600 transition-all duration-300">
-                        <h4 class="font-semibold mb-2">2. I Got This Feeling</h4>
-                        <iframe allow="autoplay *; encrypted-media *;" frameborder="0" height="150" style="width:100%;max-width:660px;overflow:hidden;background:transparent;" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-storage-access-by-user-activation allow-top-navigation-by-user-activation" src="https://embed.music.apple.com/us/album/i-got-this-feeling/1773404345?i=1773404458"></iframe>
-                    </div>
-                </div>
-                <div class="flex flex-wrap justify-center gap-4">
-                    <a href="https://music.apple.com/us/album/polished-artifacts/1773404345" class="flex items-center bg-gray-800 text-white px-5 py-3 rounded-full sound-wave-btn ripple apple-btn">
-                        <i data-feather="music" class="mr-2"></i> 
-                        <span class="relative z-10">Apple Music</span>
-                    </a>
-                    <a href="https://open.spotify.com/album/3V5DPaGBJgrYOVh8DSDT1a?si=3xqathPRThKY17gt-lipHg" class="flex items-center bg-gray-800 text-white px-5 py-3 rounded-full equalizer-btn ripple spotify-btn">
-                        <i data-feather="play" class="mr-2"></i> 
-                        <span class="relative z-10">Spotify</span>
-                        <div class="eq-bars">
-                            <div class="eq-bar"></div>
-                            <div class="eq-bar"></div>
-                            <div class="eq-bar"></div>
-                            <div class="eq-bar"></div>
-                            <div class="eq-bar"></div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Comment Section -->
-    <section id="comments" class="py-20 wave-section reveal-section">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-12 text-center glow-text">Let me know what you think!</h2>
-            <div id="cusdis_thread" 
-                 data-host="https://cusdis.com"
-                 data-app-id="9d55e686-51fe-4129-8e93-d2b06b0f96ce"
-                 data-page-id="page-home"
-                 data-page-url="https://vincentmano.com"
-                 data-page-title="Home Page"
-                 data-theme="dark"
-                 class="max-w-4xl mx-auto rounded-lg overflow-hidden shadow-2xl">
-            </div>
-        </div>
-    </section>
-
-    <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
-
-    <!-- About Section -->
-    <section id="about" class="py-20 wave-section reveal-section">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-12 text-center glow-text">About</h2>
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/3 mb-8 md:mb-0 flex justify-center">
-                    <img src="https://huggingface.co/spaces/Vinni3mac/polished-sonic-artifacts/resolve/main/images/IMG_1854.jpg" alt="Vincent Mano" class="rounded-full w-64 h-64 object-cover shadow-xl hover:scale-110 transition-all duration-500 cursor-pointer" style="box-shadow: 0 0 30px rgba(139, 0, 0, 0.3);">
-                </div>
-                <div class="md:w-2/3 md:pl-12">
-                    <p class="text-lg mb-6">
-                        Vincent Mano is a Woodland Hills, California–based musician whose career spans multiple roles in the music industry. Performing and writing since the early 2000s, he first gained recognition as the lead singer of Fallover Tuesday and has collaborated with artists such as Cory Carson and Gardner Cole.
-                    </p>
-                    <p class="text-lg mb-6">
-                        A versatile multi-instrumentalist, Vincent blends alternative rock with electronic-powered pop, crafting layered, genre-crossing melodies that are now gaining significant traction. His current album, "Polished Artifacts," is available on all streaming platforms, and he is preparing for a new album and tour with a release set for 2026.
-                    </p>
-                    <div class="mb-6">
-                        <h3 class="text-2xl font-semibold mb-4">Instruments</h3>
-                        <div class="flex flex-wrap gap-3">
-                            <span class="instrument-tag bg-gray-800 px-4 py-2 rounded-full">🎸 Guitar</span>
-                            <span class="instrument-tag bg-gray-800 px-4 py-2 rounded-full">🎹 Piano</span>
-                            <span class="instrument-tag bg-gray-800 px-4 py-2 rounded-full">🥁 Drums</span>
-                            <span class="instrument-tag bg-gray-800 px-4 py-2 rounded-full">🎸 Bass</span>
-                            <span class="instrument-tag bg-gray-800 px-4 py-2 rounded-full">🪕 Ukulele</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Upcoming Section -->
-    <section id="upcoming" class="py-20 wave-section reveal-section">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-12 text-center glow-text">Upcoming</h2>
-            <div class="max-w-4xl mx-auto">
-                <div class="bg-gradient-to-br from-gray-900 to-black border border-white border-opacity-20 rounded-xl p-8 flex flex-col md:flex-row items-center hover:border-red-600 transition-all duration-500 hover:shadow-2xl" style="box-shadow: 0 0 40px rgba(0,0,0,0.5);">
-                    <div class="md:w-1/3 mb-6 md:mb-0 flex justify-center">
-                        <img src="https://huggingface.co/spaces/Vinni3mac/polished-sonic-artifacts/resolve/main/images/IMG_3686.jpg" alt="Inkblots and Photographs" class="rounded-lg w-full max-w-xs shadow-xl hover:scale-105 transition-all duration-500">
-                    </div>
-                    <div class="md:w-2/3 md:pl-8">
-                        <h3 class="text-2xl font-semibold mb-2 glow-text">Inkblots and Photographs</h3>
-                        <p class="text-red-400 mb-4 animate-pulse">Coming Early 2026</p>
-                        <p class="mb-6">
-                            The next chapter in Vincent's musical journey explores deeper emotional landscapes through his signature blend of alternative rock and electronic pop.
-                        </p>
-                        <div class="flex space-x-4">
-                            <a href="inkblots.html" class="inline-block bg-white text-black px-6 py-3 rounded-full font-semibold sound-wave-btn ripple pulse-link">
-                                <span class="relative z-10">Learn More</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 wave-section reveal-section">
-        <div class="container mx-auto px-6">
-            <div class="max-w-lg mx-auto">
-                <h2 class="text-4xl font-bold mb-8 text-center glow-text">Contact Me</h2>
-                <form action="https://formspree.io/f/mpqjaqgd" method="POST" class="flex flex-col gap-4">
-                    <input type="text" name="name" placeholder="Your Name" required
-                           class="animated-input p-4 text-lg bg-gray-900 text-white rounded-lg outline-none">
-                    <input type="email" name="email" placeholder="Your Email" required
-                           class="animated-input p-4 text-lg bg-gray-900 text-white rounded-lg outline-none">
-                    <textarea name="message" placeholder="Your Message" rows="5" required
-                           class="animated-input p-4 text-lg bg-gray-900 text-white rounded-lg outline-none resize-none"></textarea>
-                    <input type="hidden" name="_captcha" value="true">
-                    <button type="submit" class="submit-btn p-4 text-lg text-white rounded-lg cursor-pointer font-semibold">
-                        Send Message
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer class="py-12 bg-black bg-opacity-80 backdrop-blur-lg">
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
-                    <a href="#" class="text-2xl font-bold text-white glow-text">Vincent Mano</a>
+                    <a href="index.html" class="text-2xl font-bold text-white glow-text">Vincent Mano</a>
                 </div>
                 <div class="flex space-x-6 mb-6 md:mb-0">
-                    <a href="https://www.instagram.com/vincemano?igsh=NTc4MTIwNjQ2YQ%3D%3D&utm_source=qr" class="social-icon text-white">
+                    <a href="https://www.instagram.com/vincemano" class="social-icon text-white">
                         <i data-feather="instagram"></i>
                     </a>
                 </div>
@@ -742,50 +801,7 @@
     </footer>
 
     <script>
-        // Initialize Feather Icons
         feather.replace();
-        
-        // Menu Toggle
-        document.addEventListener('DOMContentLoaded', function() {
-            const menuToggle = document.getElementById('menu-toggle');
-            const menuDropdown = document.getElementById('menu-dropdown');
-            const menuIcon = document.getElementById('menu-icon');
-
-            menuToggle.addEventListener('click', function(e) {
-                e.stopPropagation();
-                menuDropdown.classList.toggle('hidden');
-                
-                if (menuDropdown.classList.contains('hidden')) {
-                    menuIcon.setAttribute('data-feather', 'chevron-down');
-                } else {
-                    menuIcon.setAttribute('data-feather', 'chevron-up');
-                }
-                feather.replace();
-            });
-
-            document.addEventListener('click', function(event) {
-                if (!menuToggle.contains(event.target) && !menuDropdown.contains(event.target)) {
-                    menuDropdown.classList.add('hidden');
-                    menuIcon.setAttribute('data-feather', 'chevron-down');
-                    feather.replace();
-                }
-            });
-        });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                    // Close menu after clicking
-                    document.getElementById('menu-dropdown').classList.add('hidden');
-                }
-            });
-        });
 
         // Generate floating music notes
         function createMusicNotes() {
@@ -804,22 +820,6 @@
             }
         }
         createMusicNotes();
-
-        // Reveal sections on scroll
-        function revealOnScroll() {
-            const sections = document.querySelectorAll('.reveal-section');
-            const windowHeight = window.innerHeight;
-            
-            sections.forEach(section => {
-                const sectionTop = section.getBoundingClientRect().top;
-                if (sectionTop < windowHeight * 0.85) {
-                    section.classList.add('visible');
-                }
-            });
-        }
-
-        window.addEventListener('scroll', revealOnScroll);
-        window.addEventListener('load', revealOnScroll);
 
         // Dynamic inkblot movement based on mouse
         document.addEventListener('mousemove', function(e) {

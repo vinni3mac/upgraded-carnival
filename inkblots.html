@@ -2,137 +2,745 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Inkblots and Photographs | Vincent Mano</title>
+    <meta name="description" content="Inkblots and Photographs - Upcoming album from Vincent Mano, coming early 2026">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
+        
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html::before,
+        html::after,
+        body::before,
+        body::after {
+            display: none !important;
+        }
+        
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: #000;
+            background-color: #0a0a0a;
             color: #fff;
-            position: relative;
-            z-index: 1;
+            overflow-x: hidden;
         }
-        body::before {
-            content: "";
-            background-image: url('https://huggingface.co/spaces/Vinni3mac/polished-sonic-artifacts/resolve/main/images/F0A5200F-4E3D-4625-9F78-0D465ACEC581.PNG');
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: contain;
-            opacity: 0.6;
+
+        /* Rorschach Inkblot Background */
+        .inkblot-bg {
             position: fixed;
-top: 0;
+            top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
-            pointer-events: none;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
         }
-        .hero-gradient {
-            background: transparent;
-}
+
+        /* Symmetric Rorschach-style inkblots */
+        .rorschach {
+            position: absolute;
+            filter: blur(40px);
+            opacity: 0.5;
+        }
+
+        .rorschach-1 {
+            width: 300px;
+            height: 500px;
+            background: radial-gradient(ellipse at 30% 50%, #2d132c 0%, transparent 70%);
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: rorschachPulse 6s ease-in-out infinite;
+        }
+
+        .rorschach-1::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at 70% 50%, #2d132c 0%, transparent 70%);
+            transform: scaleX(-1);
+        }
+
+        .rorschach-2 {
+            width: 400px;
+            height: 300px;
+            background: radial-gradient(ellipse, #16213e 0%, transparent 60%);
+            top: 30%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 50% 50% 30% 30%;
+            animation: rorschachPulse 8s ease-in-out infinite 1s;
+        }
+
+        .rorschach-3 {
+            width: 250px;
+            height: 400px;
+            top: 50%;
+            left: calc(50% - 200px);
+            background: radial-gradient(ellipse at center, #1a1a2e 0%, transparent 70%);
+            border-radius: 60% 40% 70% 30%;
+            animation: rorschachFloat 10s ease-in-out infinite;
+        }
+
+        .rorschach-3-mirror {
+            width: 250px;
+            height: 400px;
+            top: 50%;
+            left: calc(50% + 200px);
+            transform: translateX(-100%) scaleX(-1);
+            background: radial-gradient(ellipse at center, #1a1a2e 0%, transparent 70%);
+            border-radius: 60% 40% 70% 30%;
+            animation: rorschachFloat 10s ease-in-out infinite;
+        }
+
+        .rorschach-4 {
+            width: 350px;
+            height: 350px;
+            background: radial-gradient(circle, #0f3460 0%, transparent 60%);
+            top: 60%;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: rorschachPulse 7s ease-in-out infinite 2s;
+        }
+
+        .rorschach-5 {
+            width: 200px;
+            height: 300px;
+            top: 20%;
+            left: calc(50% - 250px);
+            background: radial-gradient(ellipse, #2d132c 0%, transparent 70%);
+            border-radius: 30% 70% 50% 50%;
+            animation: rorschachFloat 12s ease-in-out infinite 0.5s;
+        }
+
+        .rorschach-5-mirror {
+            width: 200px;
+            height: 300px;
+            top: 20%;
+            left: calc(50% + 250px);
+            transform: translateX(-100%) scaleX(-1);
+            background: radial-gradient(ellipse, #2d132c 0%, transparent 70%);
+            border-radius: 30% 70% 50% 50%;
+            animation: rorschachFloat 12s ease-in-out infinite 0.5s;
+        }
+
+        /* Dripping ink effect */
+        .ink-drip {
+            position: absolute;
+            width: 80px;
+            height: 200px;
+            background: linear-gradient(to bottom, #1a1a2e 0%, transparent 100%);
+            border-radius: 50% 50% 50% 50% / 20% 20% 80% 80%;
+            filter: blur(20px);
+            opacity: 0.4;
+            animation: drip 8s ease-in-out infinite;
+        }
+
+        .ink-drip-1 { left: calc(50% - 100px); top: 40%; animation-delay: 0s; }
+        .ink-drip-2 { left: calc(50% + 100px); top: 40%; animation-delay: 2s; transform: scaleX(-1); }
+        .ink-drip-3 { left: calc(50% - 50px); top: 55%; animation-delay: 4s; width: 60px; }
+        .ink-drip-4 { left: calc(50% + 50px); top: 55%; animation-delay: 4s; width: 60px; transform: scaleX(-1); }
+
+        @keyframes drip {
+            0%, 100% { 
+                height: 200px;
+                opacity: 0.4;
+            }
+            50% { 
+                height: 280px;
+                opacity: 0.6;
+            }
+        }
+
+        @keyframes rorschachPulse {
+            0%, 100% {
+                transform: translateX(-50%) scale(1);
+                opacity: 0.4;
+            }
+            50% {
+                transform: translateX(-50%) scale(1.15);
+                opacity: 0.6;
+            }
+        }
+
+        @keyframes rorschachFloat {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.4;
+            }
+            50% {
+                transform: translateY(-20px) rotate(3deg);
+                opacity: 0.6;
+            }
+        }
+
+        /* Floating Music Notes */
+        .music-notes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .note {
+            position: absolute;
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.1);
+            animation: floatNote 15s linear infinite;
+        }
+
+        @keyframes floatNote {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Glowing Text Effect */
+        .glow-text {
+            transition: all 0.3s ease;
+        }
+
+        .glow-text:hover {
+            text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+        }
+
+        /* Sound Wave Button */
+        .sound-wave-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .sound-wave-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+            border-radius: 50%;
+        }
+
+        .sound-wave-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .sound-wave-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Ripple Effect */
+        .ripple {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ripple:active::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            animation: rippleEffect 0.6s ease-out;
+        }
+
+        @keyframes rippleEffect {
+            to {
+                transform: translate(-50%, -50%) scale(40);
+                opacity: 0;
+            }
+        }
+
+        /* Wave Section */
+        .wave-section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wave-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.02), transparent);
+            animation: waveMove 8s linear infinite;
+        }
+
+        @keyframes waveMove {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(50%); }
+        }
+
+        /* Album Image */
+        .album-image {
+            transition: all 0.5s ease;
+            position: relative;
+        }
+
+        .album-image:hover {
+            transform: scale(1.03) rotate(1deg);
+            box-shadow: 0 30px 60px rgba(139, 0, 0, 0.4);
+        }
+
+        /* Title Animation */
+        .title-animate {
+            animation: titleGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { 
+                text-shadow: 0 0 10px rgba(255,255,255,0.3);
+                opacity: 0.9;
+            }
+            50% { 
+                text-shadow: 0 0 30px rgba(255,255,255,0.6), 0 0 60px rgba(139,0,0,0.3);
+                opacity: 1;
+            }
+        }
+
+        /* Coming Soon Badge */
+        .coming-soon-badge {
+            background: linear-gradient(135deg, #ff4444, #cc0000);
+            animation: badgePulse 2s ease-in-out infinite;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { 
+                opacity: 0.8;
+                box-shadow: 0 0 10px rgba(255, 68, 68, 0.3);
+            }
+            50% { 
+                opacity: 1;
+                box-shadow: 0 0 25px rgba(255, 68, 68, 0.6);
+            }
+        }
+
+        /* Nixie Tube Clock Styling */
+        .nixie-clock {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 2rem;
+        }
+
+        .tube {
+            background: linear-gradient(180deg, rgba(20, 20, 30, 0.9) 0%, rgba(10, 10, 15, 0.95) 100%);
+            border: 2px solid rgba(255, 68, 68, 0.3);
+            border-radius: 12px;
+            padding: 15px 20px;
+            min-width: 80px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 
+                0 0 20px rgba(255, 68, 68, 0.2),
+                inset 0 0 30px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .tube:hover {
+            border-color: rgba(255, 68, 68, 0.6);
+            box-shadow: 
+                0 0 30px rgba(255, 68, 68, 0.4),
+                inset 0 0 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .tube::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, transparent 100%);
+            border-radius: 10px 10px 0 0;
+        }
+
+        .tube .label {
+            display: block;
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-bottom: 5px;
+        }
+
+        .tube .digit {
+            font-size: 48px;
+            font-weight: 700;
+            color: #ff4444;
+            text-shadow: 
+                0 0 10px #ff4444,
+                0 0 20px #ff4444,
+                0 0 40px #ff2222;
+            animation: nixieFlicker 0.1s ease-in-out infinite alternate;
+        }
+
+        @keyframes nixieFlicker {
+            0% { opacity: 0.95; }
+            100% { opacity: 1; }
+        }
+
+        /* Feature Cards */
+        .feature-card {
+            background: rgba(20, 20, 30, 0.4);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .feature-card:hover::before {
+            left: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            background: rgba(139, 0, 0, 0.2);
+            border-color: rgba(255, 68, 68, 0.5);
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.3);
+        }
+
+        /* Social Icon Animation */
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px) scale(1.2);
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+        }
+
+        /* Text fade in animation */
+        .text-fade {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: textFadeIn 0.8s ease forwards;
+        }
+
+        .text-fade:nth-child(1) { animation-delay: 0.2s; }
+        .text-fade:nth-child(2) { animation-delay: 0.4s; }
+        .text-fade:nth-child(3) { animation-delay: 0.6s; }
+        .text-fade:nth-child(4) { animation-delay: 0.8s; }
+
+        @keyframes textFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Nav styling */
+        nav {
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        /* Reveal Animation */
+        .reveal-section {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body class="antialiased">
+    <!-- Rorschach Inkblot Background -->
+    <div class="inkblot-bg">
+        <!-- Symmetric Rorschach shapes -->
+        <div class="rorschach rorschach-1"></div>
+        <div class="rorschach rorschach-2"></div>
+        <div class="rorschach rorschach-3"></div>
+        <div class="rorschach rorschach-3-mirror"></div>
+        <div class="rorschach rorschach-4"></div>
+        <div class="rorschach rorschach-5"></div>
+        <div class="rorschach rorschach-5-mirror"></div>
+        
+        <!-- Dripping ink effects -->
+        <div class="ink-drip ink-drip-1"></div>
+        <div class="ink-drip ink-drip-2"></div>
+        <div class="ink-drip ink-drip-3"></div>
+        <div class="ink-drip ink-drip-4"></div>
+    </div>
+
+    <!-- Floating Music Notes -->
+    <div class="music-notes" id="musicNotes"></div>
+
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-black bg-opacity-90 py-4 px-6">
+    <nav class="fixed w-full z-50 bg-black bg-opacity-80 py-4 px-6">
         <div class="container mx-auto flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-white">Vincent Mano</a>
-            <div class="relative hidden">
-                <div class="relative hidden">
-                    <button id="menu-toggle" class="hidden text-white bg-red-600 px-3 py-1 rounded flex items-center space-x-1">
-                        <span>Menu</span>
-                        <i id="menu-icon" data-feather="chevron-down" class="w-4 h-4"></i>
-                    </button>
-                    <div id="menu-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-black bg-opacity-90 border border-red-600 rounded-md shadow-lg hidden z-50">
-<a href="index.html#music" class="block px-4 py-2 text-white hover:bg-red-600 transition">Music</a>
-                    <a href="index.html#about" class="block px-4 py-2 text-white hover:bg-red-600 transition">About</a>
-                    <a href="index.html#contact" class="block px-4 py-2 text-white hover:bg-red-600 transition">Contact</a>
-                    <a href="index.html#upcoming" class="block px-4 py-2 text-white hover:bg-red-600 transition">Upcoming</a>
-                    <a href="news.html" class="block px-4 py-2 text-white hover:bg-red-600 transition">News</a>
-                    <a href="tour-dates.html" class="block px-4 py-2 text-white hover:bg-red-600 transition">Tour Dates</a>
-</div>
-            </div>
-</div>
+            <a href="index.html" class="text-2xl font-bold text-white glow-text">Vincent Mano</a>
+            <a href="index.html" class="text-white bg-red-600 px-4 py-2 rounded-lg sound-wave-btn ripple">
+                <span class="relative z-10">← Back</span>
+            </a>
+        </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-gradient min-h-screen flex items-center justify-center pt-20">
+    <section class="min-h-screen flex items-center justify-center pt-20 wave-section">
         <div class="container mx-auto px-6 py-20 text-center">
-            <h1 class="text-5xl md:text-7xl font-bold mb-6 text-white opacity-80">Inkblots and Photographs</h1>
-            <p class="text-xl mb-8 text-gray-400">Coming Early 2026</p>
-<div class="max-w-3xl mx-auto">
-                <img src="https://huggingface.co/spaces/Vinni3mac/polished-sonic-artifacts/resolve/main/images/IMG_2966.jpg" alt="Inkblots and Photographs" class="rounded-lg shadow-2xl w-full mb-12 hover:scale-105 transition-transform duration-300">
-<div class="text-lg space-y-6">
-                    <p>
+            <div class="mb-6">
+                <span class="coming-soon-badge inline-block px-6 py-2 rounded-full text-sm font-bold text-white mb-4">
+                    🎵 COMING EARLY 2026 🎵
+                </span>
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 text-white title-animate glow-text">Inkblots and Photographs</h1>
+            <p class="text-xl mb-8 text-gray-400">The next chapter in Vincent Mano's musical journey</p>
+            
+            <!-- Nixie Tube Countdown Clock -->
+            <div class="nixie-clock" id="nixie-clock">
+                <div class="tube">
+                    <span class="label">DAYS</span>
+                    <span class="digit" id="days">000</span>
+                </div>
+                <div class="tube">
+                    <span class="label">HOURS</span>
+                    <span class="digit" id="hours">00</span>
+                </div>
+                <div class="tube">
+                    <span class="label">MINS</span>
+                    <span class="digit" id="minutes">00</span>
+                </div>
+                <div class="tube">
+                    <span class="label">SECS</span>
+                    <span class="digit" id="seconds">00</span>
+                </div>
+            </div>
+            
+            <div class="max-w-4xl mx-auto mt-12">
+                <div class="relative inline-block mb-12">
+                    <img src="https://huggingface.co/spaces/Vinni3mac/polished-sonic-artifacts/resolve/main/images/IMG_2966.jpg" alt="Inkblots and Photographs" class="album-image rounded-xl shadow-2xl w-full max-w-2xl mx-auto">
+                </div>
+                
+                <div class="text-lg space-y-6 max-w-3xl mx-auto text-left">
+                    <p class="text-fade text-gray-300 leading-relaxed">
                         "Inkblots and Photographs" represents Vincent Mano's deepest exploration into emotional storytelling through music. This upcoming album marks a significant evolution in his sound, embracing a slower, more introspective approach to electronic creation.
                     </p>
-                    <p>
+                    <p class="text-fade text-gray-300 leading-relaxed">
                         Each track will serve as an audio photograph - capturing raw emotional moments through lush synthesizers, delicate piano work, and Vincent's signature vulnerable vocal delivery.
                     </p>
-                    <p>
+                    <p class="text-fade text-gray-300 leading-relaxed">
                         The album draws inspiration from the contrast between fleeting digital moments and permanent emotional imprints, blending organic instrumentation with cutting-edge electronic production techniques.
                     </p>
-                <a href="index.html" class="inline-block bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition mt-8">
-                        Back to Main
-                    </a>
+                </div>
 
-                    <div id="nixie-clock" class="mt-8 flex justify-center gap-4">
-                      <div class="tube text-center">
-                        <span class="label text-sm text-gray-400">DAYS</span>
-                        <span id="days" class="text-4xl font-bold text-red-500">40</span>
-                      </div>
-                      <div class="tube text-center">
-                        <span class="label text-sm text-gray-400">HRS</span>
-                        <span id="hours" class="text-4xl font-bold text-red-500">00</span>
-                      </div>
-                      <div class="tube text-center">
-                        <span class="label text-sm text-gray-400">MIN</span>
-                        <span id="minutes" class="text-4xl font-bold text-red-500">00</span>
-                      </div>
-                      <div class="tube text-center">
-                        <span class="label text-sm text-gray-400">SEC</span>
-                        <span id="seconds" class="text-4xl font-bold text-red-500">00</span>
-                      </div>
+                <!-- Features Section -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 mb-12">
+                    <div class="feature-card p-6 rounded-xl border border-white border-opacity-20">
+                        <div class="text-4xl mb-4">🎹</div>
+                        <h3 class="text-xl font-semibold mb-2">Delicate Piano</h3>
+                        <p class="text-gray-400 text-sm">Intimate piano melodies woven throughout every track</p>
                     </div>
+                    <div class="feature-card p-6 rounded-xl border border-white border-opacity-20">
+                        <div class="text-4xl mb-4">🎧</div>
+                        <h3 class="text-xl font-semibold mb-2">Lush Synths</h3>
+                        <p class="text-gray-400 text-sm">Rich electronic textures creating immersive soundscapes</p>
+                    </div>
+                    <div class="feature-card p-6 rounded-xl border border-white border-opacity-20">
+                        <div class="text-4xl mb-4">🎤</div>
+                        <h3 class="text-xl font-semibold mb-2">Raw Vocals</h3>
+                        <p class="text-gray-400 text-sm">Vulnerable and honest vocal performances</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-4 mt-8">
+                    <a href="index.html" class="inline-block bg-white text-black px-8 py-4 rounded-full font-semibold sound-wave-btn ripple text-lg">
+                        <span class="relative z-10">← Back to Main</span>
+                    </a>
+                    <a href="news.html" class="inline-block bg-transparent border-2 border-white text-white px-8 py-4 rounded-full font-semibold sound-wave-btn ripple text-lg">
+                        <span class="relative z-10">Latest News →</span>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <script>
-        // Countdown timer for album release
-        function updateCountdown() {
-            const releaseDate = new Date('2026-01-01T00:00:00');
-            const now = new Date();
-            const diff = releaseDate - now;
-            
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-            
-            document.getElementById('days').textContent = days.toString().padStart(2, '0');
-            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-        }
-        
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
-    </script>
-<footer class="py-12 bg-transparent">
-<div class="container mx-auto px-6 text-center">
-            <div class="text-gray-400 text-sm">
-                &copy; 2024 Vincent Mano. All rights reserved.
+    <footer class="py-12 bg-black bg-opacity-80 backdrop-blur-lg">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <a href="index.html" class="text-2xl font-bold text-white glow-text">Vincent Mano</a>
+                </div>
+                <div class="flex space-x-6 mb-6 md:mb-0">
+                    <a href="https://www.instagram.com/vincemano" class="social-icon text-white">
+                        <i data-feather="instagram"></i>
+                    </a>
+                </div>
+                <div class="text-gray-400 text-sm">
+                    &copy; 2024 Vincent Mano. All rights reserved.
+                </div>
             </div>
         </div>
     </footer>
 
     <script>
         feather.replace();
+
+        // 40-day countdown timer with localStorage persistence
+        function initCountdown() {
+            const COUNTDOWN_KEY = 'vincentmano_countdown_start';
+            const COUNTDOWN_DAYS = 40;
+            const MS_PER_DAY = 1000 * 60 * 60 * 24;
+            const MS_PER_HOUR = 1000 * 60 * 60;
+            const MS_PER_MINUTE = 1000 * 60;
+            const MS_PER_SECOND = 1000;
+            
+            // Check if we have a saved start time
+            let startTime = localStorage.getItem(COUNTDOWN_KEY);
+            
+            if (!startTime) {
+                // First visit - set the start time to now
+                startTime = Date.now();
+                localStorage.setItem(COUNTDOWN_KEY, startTime);
+            } else {
+                startTime = parseInt(startTime);
+            }
+            
+            // Calculate end time (40 days from start)
+            const endTime = startTime + (COUNTDOWN_DAYS * MS_PER_DAY);
+            
+            function updateDisplay() {
+                const now = Date.now();
+                let diff = endTime - now;
+                
+                // If countdown has finished, restart it
+                if (diff <= 0) {
+                    // Reset the countdown
+                    const newStartTime = Date.now();
+                    localStorage.setItem(COUNTDOWN_KEY, newStartTime);
+                    diff = COUNTDOWN_DAYS * MS_PER_DAY;
+                }
+                
+                const days = Math.floor(diff / MS_PER_DAY);
+                const hours = Math.floor((diff % MS_PER_DAY) / MS_PER_HOUR);
+                const minutes = Math.floor((diff % MS_PER_HOUR) / MS_PER_MINUTE);
+                const seconds = Math.floor((diff % MS_PER_MINUTE) / MS_PER_SECOND);
+                
+                document.getElementById('days').textContent = days.toString().padStart(3, '0');
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            }
+            
+            // Update immediately and then every second
+            updateDisplay();
+            setInterval(updateDisplay, 1000);
+        }
+        
+        // Initialize countdown when page loads
+        initCountdown();
+
+        // Generate floating music notes
+        function createMusicNotes() {
+            const container = document.getElementById('musicNotes');
+            const notes = ['♪', '♫', '♬', '♩', '🎵', '🎶'];
+            
+            for (let i = 0; i < 15; i++) {
+                const note = document.createElement('span');
+                note.className = 'note';
+                note.textContent = notes[Math.floor(Math.random() * notes.length)];
+                note.style.left = Math.random() * 100 + '%';
+                note.style.animationDelay = Math.random() * 15 + 's';
+                note.style.animationDuration = (15 + Math.random() * 10) + 's';
+                note.style.fontSize = (16 + Math.random() * 20) + 'px';
+                container.appendChild(note);
+            }
+        }
+        createMusicNotes();
+
+        // Dynamic Rorschach movement based on mouse
+        document.addEventListener('mousemove', function(e) {
+            const rorschachs = document.querySelectorAll('.rorschach');
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            rorschachs.forEach((shape, index) => {
+                const speed = (index + 1) * 0.015;
+                const x = (mouseX - 0.5) * speed * 50;
+                const y = (mouseY - 0.5) * speed * 50;
+                
+                // Keep the symmetric ones moving together
+                if (shape.classList.contains('rorschach-3-mirror') || 
+                    shape.classList.contains('rorschach-5-mirror')) {
+                    shape.style.transform = `translateX(-100%) scaleX(-1) translate(${-x}px, ${y}px)`;
+                } else if (shape.classList.contains('rorschach-1') || 
+                           shape.classList.contains('rorschach-2') || 
+                           shape.classList.contains('rorschach-4')) {
+                    shape.style.transform = `translateX(-50%) translate(${x}px, ${y}px)`;
+                } else {
+                    shape.style.transform = `translate(${x}px, ${y}px)`;
+                }
+            });
+        });
+
+        // Reveal sections on scroll
+        function revealOnScroll() {
+            const sections = document.querySelectorAll('.reveal-section');
+            const windowHeight = window.innerHeight;
+            
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                if (sectionTop < windowHeight * 0.85) {
+                    section.classList.add('visible');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', revealOnScroll);
+        window.addEventListener('load', revealOnScroll);
     </script>
 </body>
 </html>

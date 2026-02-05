@@ -1,8 +1,9 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Vincent Mano | Polished Artifacts</title>
     <meta name="description" content="Official website of Vincent Mano, alternative rock/electronic pop musician from Woodland Hills, California. Featuring the album 'Polished Artifacts'">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -10,10 +11,23 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
         
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+        
+        /* Hide any stray text nodes */
+        html::before,
+        html::after,
+        body::before,
+        body::after {
+            display: none !important;
         }
         
         body {

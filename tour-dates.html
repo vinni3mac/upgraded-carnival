@@ -1,447 +1,796 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Vincent Mano | Tour Dates</title>
     <meta name="description" content="Upcoming tour dates for Vincent Mano">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
+        
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html::before,
+        html::after,
+        body::before,
+        body::after {
+            display: none !important;
+        }
+        
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: #000;
+            background-color: #0a0a0a;
             color: #fff;
-            position: relative;
-            z-index: 1;
+            overflow-x: hidden;
         }
-        body::before {
-            content: "";
-            background-image: url('https://huggingface.co/spaces/Vinni3mac/polished-sonic-artifacts/resolve/main/images/F0A5200F-4E3D-4625-9F78-0D465ACEC581.PNG');
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: contain;
-            opacity: 0.4;
-position: fixed;
+
+        /* Animated Inkblot Background */
+        .inkblot-bg {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
-            pointer-events: none;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
         }
+
+        .inkblot {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.4;
+            animation: inkblotPulse 8s ease-in-out infinite;
+        }
+
+        .inkblot-1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(ellipse, #1a1a2e 0%, #2d132c 50%, transparent 70%);
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .inkblot-2 {
+            width: 500px;
+            height: 300px;
+            background: radial-gradient(ellipse, #16213e 0%, #1a1a2e 50%, transparent 70%);
+            top: 30%;
+            right: 10%;
+            animation-delay: 2s;
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        }
+
+        .inkblot-3 {
+            width: 350px;
+            height: 450px;
+            background: radial-gradient(ellipse, #2d132c 0%, #1a1a2e 50%, transparent 70%);
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        }
+
+        .inkblot-4 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(ellipse, #0f3460 0%, #16213e 50%, transparent 70%);
+            top: 60%;
+            right: 5%;
+            animation-delay: 1s;
+        }
+
+        .inkblot-5 {
+            width: 450px;
+            height: 350px;
+            background: radial-gradient(ellipse, #1a1a2e 0%, #2d132c 50%, transparent 70%);
+            top: 80%;
+            left: 40%;
+            animation-delay: 3s;
+            border-radius: 70% 30% 50% 50% / 30% 70% 30% 70%;
+        }
+
+        @keyframes inkblotPulse {
+            0%, 100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 0.3;
+            }
+            50% {
+                transform: scale(1.2) rotate(5deg);
+                opacity: 0.5;
+            }
+        }
+
+        /* Floating Music Notes */
+        .music-notes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .note {
+            position: absolute;
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.1);
+            animation: floatNote 15s linear infinite;
+        }
+
+        @keyframes floatNote {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Tour Date Card Animation */
         .tour-date {
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            background: rgba(20, 20, 30, 0.4);
+            backdrop-filter: blur(10px);
+        }
+
+        .tour-date::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .tour-date:hover::before {
+            left: 100%;
+        }
+
+        .tour-date:hover {
+            transform: translateY(-5px) scale(1.02);
+            background: rgba(139, 0, 0, 0.2);
+            border-color: rgba(255, 68, 68, 0.5);
+            box-shadow: 0 10px 30px rgba(139, 0, 0, 0.3);
+        }
+
+        .tour-date:hover h3 {
+            color: #ff6b6b;
+        }
+
+        /* Glowing Text Effect */
+        .glow-text {
             transition: all 0.3s ease;
         }
-        .tour-date:hover {
-            transform: translateY(-3px);
-            background-color: rgba(255,255,255,0.1);
+
+        .glow-text:hover {
+            text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+        }
+
+        /* Sound Wave Button */
+        .sound-wave-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .sound-wave-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+            border-radius: 50%;
+        }
+
+        .sound-wave-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .sound-wave-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Ripple Effect */
+        .ripple {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ripple:active::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            animation: rippleEffect 0.6s ease-out;
+        }
+
+        @keyframes rippleEffect {
+            to {
+                transform: translate(-50%, -50%) scale(40);
+                opacity: 0;
+            }
+        }
+
+        /* Wave Section */
+        .wave-section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wave-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.02), transparent);
+            animation: waveMove 8s linear infinite;
+        }
+
+        @keyframes waveMove {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(50%); }
+        }
+
+        /* Reveal Animation */
+        .reveal-section {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Social Icon Animation */
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px) scale(1.2);
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+        }
+
+        /* Staggered tour date animation */
+        .tour-date {
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: slideIn 0.5s ease forwards;
+        }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .tour-date:nth-child(1) { animation-delay: 0.1s; }
+        .tour-date:nth-child(2) { animation-delay: 0.15s; }
+        .tour-date:nth-child(3) { animation-delay: 0.2s; }
+        .tour-date:nth-child(4) { animation-delay: 0.25s; }
+        .tour-date:nth-child(5) { animation-delay: 0.3s; }
+        .tour-date:nth-child(6) { animation-delay: 0.35s; }
+        .tour-date:nth-child(7) { animation-delay: 0.4s; }
+        .tour-date:nth-child(8) { animation-delay: 0.45s; }
+        .tour-date:nth-child(9) { animation-delay: 0.5s; }
+        .tour-date:nth-child(10) { animation-delay: 0.55s; }
+        .tour-date:nth-child(n+11) { animation-delay: 0.6s; }
+
+        /* Nav styling */
+        nav {
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+
+        /* State badges */
+        .state-badge {
+            background: linear-gradient(135deg, #ff4444, #cc0000);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; box-shadow: 0 0 15px rgba(255, 68, 68, 0.5); }
         }
     </style>
 </head>
 <body class="antialiased">
+    <!-- Animated Inkblot Background -->
+    <div class="inkblot-bg">
+        <div class="inkblot inkblot-1"></div>
+        <div class="inkblot inkblot-2"></div>
+        <div class="inkblot inkblot-3"></div>
+        <div class="inkblot inkblot-4"></div>
+        <div class="inkblot inkblot-5"></div>
+    </div>
+
+    <!-- Floating Music Notes -->
+    <div class="music-notes" id="musicNotes"></div>
+
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-black bg-opacity-90 py-4 px-6">
-        <div class="container mx-auto">
-            <a href="index.html" class="text-2xl font-bold text-white">Vincent Mano</a>
+    <nav class="fixed w-full z-50 bg-black bg-opacity-80 py-4 px-6">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-white glow-text">Vincent Mano</a>
+            <a href="index.html" class="text-white bg-red-600 px-4 py-2 rounded-lg sound-wave-btn ripple">
+                <span class="relative z-10">← Back</span>
+            </a>
         </div>
     </nav>
-<!-- Tour Dates Section -->
-    <section class="min-h-screen pt-32 pb-20">
+
+    <!-- Tour Dates Section -->
+    <section class="min-h-screen pt-32 pb-20 wave-section">
         <div class="container mx-auto px-6">
-            <h1 class="text-5xl font-bold mb-12 text-center">Tour Dates</h1>
+            <h1 class="text-5xl font-bold mb-4 text-center glow-text">Tour Dates</h1>
+            <p class="text-center text-gray-400 mb-12">🎸 Catch Vincent Mano live on tour 🎸</p>
             
-            <div class="max-w-3xl mx-auto space-y-6">
-                <!-- Tour Date Items -->
+            <div class="max-w-3xl mx-auto space-y-4">
                 <!-- Florida -->
-                <div class="tour-date bg-transparent border border-white border-opacity-20 rounded-xl p-6">
+                <div class="text-center mb-6">
+                    <span class="state-badge inline-block px-4 py-1 rounded-full text-sm font-semibold">🌴 FLORIDA</span>
+                </div>
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
                     <div class="flex flex-col md:flex-row justify-between items-center">
                         <div class="mb-4 md:mb-0">
-                            <h3 class="text-2xl font-semibold">Miami, FL</h3>
+                            <h3 class="text-2xl font-semibold transition-colors">Miami, FL</h3>
                             <p class="text-gray-400">The Fillmore Miami Beach</p>
                         </div>
                         <div class="text-right">
-                            <p class="text-xl">October 7, 2023</p>
+                            <p class="text-xl text-red-400">October 7, 2023</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Georgia -->
-                <div class="tour-date bg-transparent border border-white border-opacity-20 rounded-xl p-6">
+                <div class="text-center mb-6 mt-10">
+                    <span class="state-badge inline-block px-4 py-1 rounded-full text-sm font-semibold">🍑 GEORGIA</span>
+                </div>
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
                     <div class="flex flex-col md:flex-row justify-between items-center">
                         <div class="mb-4 md:mb-0">
-                            <h3 class="text-2xl font-semibold">Atlanta, GA</h3>
+                            <h3 class="text-2xl font-semibold transition-colors">Atlanta, GA</h3>
                             <p class="text-gray-400">The Masquerade</p>
                         </div>
                         <div class="text-right">
-                            <p class="text-xl">October 14, 2023</p>
+                            <p class="text-xl text-red-400">October 14, 2023</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="tour-date bg-transparent border border-white border-opacity-20 rounded-xl p-6">
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
                     <div class="flex flex-col md:flex-row justify-between items-center">
                         <div class="mb-4 md:mb-0">
-                            <h3 class="text-2xl font-semibold">Savannah, GA</h3>
+                            <h3 class="text-2xl font-semibold transition-colors">Savannah, GA</h3>
                             <p class="text-gray-400">Victory North</p>
                         </div>
                         <div class="text-right">
-                            <p class="text-xl">October 19, 2023</p>
+                            <p class="text-xl text-red-400">October 19, 2023</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="tour-date bg-transparent border border-white border-opacity-20 rounded-xl p-6">
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
                     <div class="flex flex-col md:flex-row justify-between items-center">
                         <div class="mb-4 md:mb-0">
-                            <h3 class="text-2xl font-semibold">Athens, GA</h3>
+                            <h3 class="text-2xl font-semibold transition-colors">Athens, GA</h3>
                             <p class="text-gray-400">40 Watt Club</p>
                         </div>
                         <div class="text-right">
-                            <p class="text-xl">October 25, 2023</p>
+                            <p class="text-xl text-red-400">October 25, 2023</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- South Carolina -->
-                <div class="tour-date bg-transparent border border-white border-opacity-20 rounded-xl p-6">
+                <div class="text-center mb-6 mt-10">
+                    <span class="state-badge inline-block px-4 py-1 rounded-full text-sm font-semibold">🌙 SOUTH CAROLINA</span>
+                </div>
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
                     <div class="flex flex-col md:flex-row justify-between items-center">
                         <div class="mb-4 md:mb-0">
-                            <h3 class="text-2xl font-semibold">Charleston, SC</h3>
+                            <h3 class="text-2xl font-semibold transition-colors">Charleston, SC</h3>
                             <p class="text-gray-400">The Music Farm</p>
                         </div>
                         <div class="text-right">
-                            <p class="text-xl">October 28, 2023</p>
+                            <p class="text-xl text-red-400">October 28, 2023</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="tour-date bg-transparent border border-white border-opacity-20 rounded-xl p-6">
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
                     <div class="flex flex-col md:flex-row justify-between items-center">
                         <div class="mb-4 md:mb-0">
-                            <h3 class="text-2xl font-semibold">Columbia, SC</h3>
+                            <h3 class="text-2xl font-semibold transition-colors">Columbia, SC</h3>
                             <p class="text-gray-400">The Senate</p>
                         </div>
                         <div class="text-right">
-                            <p class="text-xl">November 2, 2023</p>
+                            <p class="text-xl text-red-400">November 2, 2023</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="tour-date bg-transparent border border-white border-opacity-20 rounded-xl p-6">
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
                     <div class="flex flex-col md:flex-row justify-between items-center">
                         <div class="mb-4 md:mb-0">
-                            <h3 class="text-2xl font-semibold">Greenville, SC</h3>
+                            <h3 class="text-2xl font-semibold transition-colors">Greenville, SC</h3>
                             <p class="text-gray-400">The Radio Room</p>
                         </div>
                         <div class="text-right">
-                            <p class="text-xl">November 7, 2023</p>
+                            <p class="text-xl text-red-400">November 7, 2023</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Virginia -->
-                <div class="tour-date bg-transparent border border-white border-opacity-20 rounded-xl p-6">
+                <div class="text-center mb-6 mt-10">
+                    <span class="state-badge inline-block px-4 py-1 rounded-full text-sm font-semibold">🏛️ VIRGINIA</span>
+                </div>
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
                     <div class="flex flex-col md:flex-row justify-between items-center">
                         <div class="mb-4 md:mb-0">
-                            <h3 class="text-2xl font-semibold">Richmond, VA</h3>
+                            <h3 class="text-2xl font-semibold transition-colors">Richmond, VA</h3>
                             <p class="text-gray-400">The National</p>
                         </div>
                         <div class="text-right">
-                            <p class="text-xl">November 12, 2023</p>
+                            <p class="text-xl text-red-400">November 12, 2023</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="tour-date bg-transparent border border-white border-opacity-20 rounded-xl p-6">
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
                     <div class="flex flex-col md:flex-row justify-between items-center">
                         <div class="mb-4 md:mb-0">
-                            <h3 class="text-2xl font-semibold">Norfolk, VA</h3>
+                            <h3 class="text-2xl font-semibold transition-colors">Norfolk, VA</h3>
                             <p class="text-gray-400">The NorVa</p>
                         </div>
                         <div class="text-right">
-                            <p class="text-xl">November 18, 2023</p>
+                            <p class="text-xl text-red-400">November 18, 2023</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="tour-date bg-transparent border border-white border-opacity-20 rounded-xl p-6">
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
                     <div class="flex flex-col md:flex-row justify-between items-center">
                         <div class="mb-4 md:mb-0">
-                            <h3 class="text-2xl font-semibold">Charlottesville, VA</h3>
+                            <h3 class="text-2xl font-semibold transition-colors">Charlottesville, VA</h3>
                             <p class="text-gray-400">The Jefferson Theater</p>
                         </div>
                         <div class="text-right">
-                            <p class="text-xl">November 24, 2023</p>
+                            <p class="text-xl text-red-400">November 24, 2023</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Ohio -->
-                <div class="tour-date bg-transparent border border-white border-opacity-20 rounded-xl p-6">
+                <div class="text-center mb-6 mt-10">
+                    <span class="state-badge inline-block px-4 py-1 rounded-full text-sm font-semibold">🌰 OHIO</span>
+                </div>
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
                     <div class="flex flex-col md:flex-row justify-between items-center">
                         <div class="mb-4 md:mb-0">
-                            <h3 class="text-2xl font-semibold">Columbus, OH</h3>
+                            <h3 class="text-2xl font-semibold transition-colors">Columbus, OH</h3>
                             <p class="text-gray-400">Newport Music Hall</p>
                         </div>
                         <div class="text-right">
-                            <p class="text-xl">November 30, 2023</p>
+                            <p class="text-xl text-red-400">November 30, 2023</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="tour-date bg-transparent border border-white border-opacity-20 rounded-xl p-6">
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
                     <div class="flex flex-col md:flex-row justify-between items-center">
                         <div class="mb-4 md:mb-0">
-                            <h3 class="text-2xl font-semibold">Cleveland, OH</h3>
+                            <h3 class="text-2xl font-semibold transition-colors">Cleveland, OH</h3>
                             <p class="text-gray-400">House of Blues</p>
                         </div>
                         <div class="text-right">
-                            <p class="text-xl">December 5, 2023</p>
+                            <p class="text-xl text-red-400">December 5, 2023</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Indiana -->
-                <div class="tour-date bg-transparent border border-white border-opacity-20 rounded-xl p-6">
+                <div class="text-center mb-6 mt-10">
+                    <span class="state-badge inline-block px-4 py-1 rounded-full text-sm font-semibold">🏎️ INDIANA</span>
+                </div>
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
                     <div class="flex flex-col md:flex-row justify-between items-center">
                         <div class="mb-4 md:mb-0">
-                            <h3 class="text-2xl font-semibold">Indianapolis, IN</h3>
+                            <h3 class="text-2xl font-semibold transition-colors">Indianapolis, IN</h3>
                             <p class="text-gray-400">The Vogue</p>
                         </div>
                         <div class="text-right">
-                            <p class="text-xl">December 10, 2023</p>
+                            <p class="text-xl text-red-400">December 10, 2023</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Illinois -->
-                <div class="tour-date bg-transparent border border-white border-opacity-20 rounded-xl p-6">
+                <div class="text-center mb-6 mt-10">
+                    <span class="state-badge inline-block px-4 py-1 rounded-full text-sm font-semibold">🌬️ ILLINOIS</span>
+                </div>
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
                     <div class="flex flex-col md:flex-row justify-between items-center">
                         <div class="mb-4 md:mb-0">
-                            <h3 class="text-2xl font-semibold">Chicago, IL</h3>
+                            <h3 class="text-2xl font-semibold transition-colors">Chicago, IL</h3>
                             <p class="text-gray-400">Metro</p>
                         </div>
                         <div class="text-right">
-                            <p class="text-xl">December 16, 2023</p>
+                            <p class="text-xl text-red-400">December 16, 2023</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="tour-date bg-transparent border border-white border-opacity-20 rounded-xl p-6">
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
                     <div class="flex flex-col md:flex-row justify-between items-center">
                         <div class="mb-4 md:mb-0">
-                            <h3 class="text-2xl font-semibold">Peoria, IL</h3>
+                            <h3 class="text-2xl font-semibold transition-colors">Peoria, IL</h3>
                             <p class="text-gray-400">Limelight Eventplex</p>
                         </div>
                         <div class="text-right">
-                            <p class="text-xl">December 22, 2023</p>
+                            <p class="text-xl text-red-400">December 22, 2023</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="tour-date bg-transparent border border-white border-opacity-20 rounded-xl p-6">
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
                     <div class="flex flex-col md:flex-row justify-between items-center">
                         <div class="mb-4 md:mb-0">
-                            <h3 class="text-2xl font-semibold">Springfield, IL</h3>
+                            <h3 class="text-2xl font-semibold transition-colors">Springfield, IL</h3>
                             <p class="text-gray-400">Boondocks</p>
                         </div>
                         <div class="text-right">
-                            <p class="text-xl">December 28, 2023</p>
+                            <p class="text-xl text-red-400">December 28, 2023</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Texas -->
-                <div class="tour-date bg-transparent border border-white border-opacity-20 rounded-xl p-6">
+                <div class="text-center mb-6 mt-10">
+                    <span class="state-badge inline-block px-4 py-1 rounded-full text-sm font-semibold">⛤ TEXAS</span>
+                </div>
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
                     <div class="flex flex-col md:flex-row justify-between items-center">
                         <div class="mb-4 md:mb-0">
-                            <h3 class="text-2xl font-semibold">Austin, TX</h3>
+                            <h3 class="text-2xl font-semibold transition-colors">Austin, TX</h3>
                             <p class="text-gray-400">Emo's</p>
                         </div>
                         <div class="text-right">
-                            <p class="text-xl">January 3, 2024</p>
+                            <p class="text-xl text-red-400">January 3, 2024</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="tour-date bg-transparent border border-white border-opacity-20 rounded-xl p-6">
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
                     <div class="flex flex-col md:flex-row justify-between items-center">
                         <div class="mb-4 md:mb-0">
-                            <h3 class="text-2xl font-semibold">Dallas, TX</h3>
+                            <h3 class="text-2xl font-semibold transition-colors">Dallas, TX</h3>
                             <p class="text-gray-400">Trees</p>
                         </div>
                         <div class="text-right">
-                            <p class="text-xl">January 9, 2024</p>
+                            <p class="text-xl text-red-400">January 9, 2024</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="tour-date bg-transparent border border-white border-opacity-20 rounded-xl p-6">
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
                     <div class="flex flex-col md:flex-row justify-between items-center">
                         <div class="mb-4 md:mb-0">
-                            <h3 class="text-2xl font-semibold">Houston, TX</h3>
+                            <h3 class="text-2xl font-semibold transition-colors">Houston, TX</h3>
                             <p class="text-gray-400">White Oak Music Hall</p>
                         </div>
                         <div class="text-right">
-                            <p class="text-xl">January 15, 2024</p>
+                            <p class="text-xl text-red-400">January 15, 2024</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Washington -->
-                <div class="tour-date bg-transparent border border-white border-opacity-20 rounded-xl p-6">
+                <div class="text-center mb-6 mt-10">
+                    <span class="state-badge inline-block px-4 py-1 rounded-full text-sm font-semibold">🌲 WASHINGTON</span>
+                </div>
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
                     <div class="flex flex-col md:flex-row justify-between items-center">
                         <div class="mb-4 md:mb-0">
-                            <h3 class="text-2xl font-semibold">Seattle, WA</h3>
+                            <h3 class="text-2xl font-semibold transition-colors">Seattle, WA</h3>
                             <p class="text-gray-400">Neumos</p>
                         </div>
                         <div class="text-right">
-                            <p class="text-xl">January 20, 2024</p>
+                            <p class="text-xl text-red-400">January 20, 2024</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="tour-date bg-transparent border border-white border-opacity-20 rounded-xl p-6">
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
                     <div class="flex flex-col md:flex-row justify-between items-center">
                         <div class="mb-4 md:mb-0">
-                            <h3 class="text-2xl font-semibold">Spokane, WA</h3>
+                            <h3 class="text-2xl font-semibold transition-colors">Spokane, WA</h3>
                             <p class="text-gray-400">Knitting Factory</p>
                         </div>
                         <div class="text-right">
-                            <p class="text-xl">January 24, 2024</p>
+                            <p class="text-xl text-red-400">January 24, 2024</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="tour-date bg-transparent border border-white border-opacity-20 rounded-xl p-6">
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
                     <div class="flex flex-col md:flex-row justify-between items-center">
                         <div class="mb-4 md:mb-0">
-                            <h3 class="text-2xl font-semibold">Tacoma, WA</h3>
+                            <h3 class="text-2xl font-semibold transition-colors">Tacoma, WA</h3>
                             <p class="text-gray-400">Jazzbones</p>
                         </div>
                         <div class="text-right">
-                            <p class="text-xl">January 28, 2024</p>
+                            <p class="text-xl text-red-400">January 28, 2024</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- Oregon -->
-                <div class="tour-date bg-transparent border border-white border-opacity-20 rounded-xl p-6">
+                <div class="text-center mb-6 mt-10">
+                    <span class="state-badge inline-block px-4 py-1 rounded-full text-sm font-semibold">🦫 OREGON</span>
+                </div>
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
                     <div class="flex flex-col md:flex-row justify-between items-center">
                         <div class="mb-4 md:mb-0">
-                            <h3 class="text-2xl font-semibold">Portland, OR</h3>
+                            <h3 class="text-2xl font-semibold transition-colors">Portland, OR</h3>
                             <p class="text-gray-400">Wonder Ballroom</p>
                         </div>
                         <div class="text-right">
-                            <p class="text-xl">January 31, 2024</p>
+                            <p class="text-xl text-red-400">January 31, 2024</p>
                         </div>
                     </div>
                 </div>
 
-                <div class="tour-date bg-transparent border border-white border-opacity-20 rounded-xl p-6">
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
                     <div class="flex flex-col md:flex-row justify-between items-center">
                         <div class="mb-4 md:mb-0">
-                            <h3 class="text-2xl font-semibold">Eugene, OR</h3>
-                            <p class="text-gray-400">WOW Hall</p>
-                        </div>
-                        <div class="text-right">
-                            <p class="text-xl">February 3, 2024</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tour-date bg-transparent border border-white border-opacity-20 rounded-xl p-6">
-                    <div class="flex flex-col md:flex-row justify-between items-center">
-                        <div class="mb-4 md:mb-0">
-                            <h3 class="text-2xl font-semibold">Bend, OR</h3>
-                            <p class="text-gray-400">Volcanic Theatre Pub</p>
-                        </div>
-                        <div class="text-right">
-                            <p class="text-xl">February 1, 2024</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tour-date bg-transparent border border-white border-opacity-20 rounded-xl p-6">
-                    <div class="flex flex-col md:flex-row justify-between items-center">
-                        <div class="mb-4 md:mb-0">
-                            <h3 class="text-2xl font-semibold">Corvallis, OR</h3>
+                            <h3 class="text-2xl font-semibold transition-colors">Corvallis, OR</h3>
                             <p class="text-gray-400">Bomber Restaurant & Brewery</p>
                         </div>
                         <div class="text-right">
-                            <p class="text-xl">January 30, 2024</p>
+                            <p class="text-xl text-red-400">January 30, 2024</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-2xl font-semibold transition-colors">Bend, OR</h3>
+                            <p class="text-gray-400">Volcanic Theatre Pub</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl text-red-400">February 1, 2024</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-2xl font-semibold transition-colors">Eugene, OR</h3>
+                            <p class="text-gray-400">WOW Hall</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl text-red-400">February 3, 2024</p>
                         </div>
                     </div>
                 </div>
 
                 <!-- California -->
-                <div class="tour-date bg-transparent border border-white border-opacity-20 rounded-xl p-6">
-                    <div class="flex flex-col md:flex-row justify-between items-center">
-                        <div class="mb-4 md:mb-0">
-                            <h3 class="text-2xl font-semibold">Los Angeles, CA</h3>
-                            <p class="text-gray-400">The Roxy Theatre</p>
-                        </div>
-                        <div class="text-right">
-                            <p class="text-xl">February 6, 2024</p>
-                        </div>
-                    </div>
+                <div class="text-center mb-6 mt-10">
+                    <span class="state-badge inline-block px-4 py-1 rounded-full text-sm font-semibold">☀️ CALIFORNIA</span>
                 </div>
-
-                <div class="tour-date bg-transparent border border-white border-opacity-20 rounded-xl p-6">
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
                     <div class="flex flex-col md:flex-row justify-between items-center">
                         <div class="mb-4 md:mb-0">
-                            <h3 class="text-2xl font-semibold">San Francisco, CA</h3>
-                            <p class="text-gray-400">The Fillmore</p>
-                        </div>
-                        <div class="text-right">
-                            <p class="text-xl">February 10, 2024</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tour-date bg-transparent border border-white border-opacity-20 rounded-xl p-6">
-                    <div class="flex flex-col md:flex-row justify-between items-center">
-                        <div class="mb-4 md:mb-0">
-                            <h3 class="text-2xl font-semibold">San Diego, CA</h3>
-                            <p class="text-gray-400">Music Box</p>
-                        </div>
-                        <div class="text-right">
-                            <p class="text-xl">February 14, 2024</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="tour-date bg-transparent border border-white border-opacity-20 rounded-xl p-6">
-                    <div class="flex flex-col md:flex-row justify-between items-center">
-                        <div class="mb-4 md:mb-0">
-                            <h3 class="text-2xl font-semibold">Sacramento, CA</h3>
+                            <h3 class="text-2xl font-semibold transition-colors">Sacramento, CA</h3>
                             <p class="text-gray-400">Ace of Spades</p>
                         </div>
                         <div class="text-right">
-                            <p class="text-xl">February 3, 2024</p>
+                            <p class="text-xl text-red-400">February 3, 2024</p>
                         </div>
                     </div>
                 </div>
-</div>
+
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-2xl font-semibold transition-colors">Los Angeles, CA</h3>
+                            <p class="text-gray-400">The Roxy Theatre</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl text-red-400">February 6, 2024</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-2xl font-semibold transition-colors">San Francisco, CA</h3>
+                            <p class="text-gray-400">The Fillmore</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl text-red-400">February 10, 2024</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tour-date border border-white border-opacity-20 rounded-xl p-6">
+                    <div class="flex flex-col md:flex-row justify-between items-center">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-2xl font-semibold transition-colors">San Diego, CA</h3>
+                            <p class="text-gray-400">Music Box</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-xl text-red-400">February 14, 2024</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
-    <div class="text-center py-8 bg-transparent">
-        <a href="index.html" class="inline-block bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition">
-            Back to Main
+
+    <div class="text-center py-12">
+        <a href="index.html" class="inline-block bg-white text-black px-8 py-4 rounded-full font-semibold sound-wave-btn ripple text-lg">
+            <span class="relative z-10">← Back to Main</span>
         </a>
     </div>
 
-    <footer class="py-12 bg-transparent">
-<div class="container mx-auto px-6">
+    <footer class="py-12 bg-black bg-opacity-80 backdrop-blur-lg">
+        <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0">
-                    <a href="index.html" class="text-2xl font-bold text-white">Vincent Mano</a>
+                    <a href="index.html" class="text-2xl font-bold text-white glow-text">Vincent Mano</a>
                 </div>
                 <div class="flex space-x-6 mb-6 md:mb-0">
                     <a href="https://www.instagram.com/vincemano" class="social-icon text-white">
-<i data-feather="instagram"></i>
+                        <i data-feather="instagram"></i>
                     </a>
                 </div>
                 <div class="text-gray-400 text-sm">
@@ -453,6 +802,38 @@ position: fixed;
 
     <script>
         feather.replace();
+
+        // Generate floating music notes
+        function createMusicNotes() {
+            const container = document.getElementById('musicNotes');
+            const notes = ['♪', '♫', '♬', '♩', '🎵', '🎶'];
+            
+            for (let i = 0; i < 15; i++) {
+                const note = document.createElement('span');
+                note.className = 'note';
+                note.textContent = notes[Math.floor(Math.random() * notes.length)];
+                note.style.left = Math.random() * 100 + '%';
+                note.style.animationDelay = Math.random() * 15 + 's';
+                note.style.animationDuration = (15 + Math.random() * 10) + 's';
+                note.style.fontSize = (16 + Math.random() * 20) + 'px';
+                container.appendChild(note);
+            }
+        }
+        createMusicNotes();
+
+        // Dynamic inkblot movement based on mouse
+        document.addEventListener('mousemove', function(e) {
+            const inkblots = document.querySelectorAll('.inkblot');
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            inkblots.forEach((inkblot, index) => {
+                const speed = (index + 1) * 0.02;
+                const x = (mouseX - 0.5) * speed * 100;
+                const y = (mouseY - 0.5) * speed * 100;
+                inkblot.style.transform = `translate(${x}px, ${y}px)`;
+            });
+        });
     </script>
 </body>
 </html>

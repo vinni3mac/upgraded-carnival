@@ -138,8 +138,26 @@ top: 0;
         </div>
     </section>
 
+    <!-- Comment Section -->
+    <section id="comments" class="py-20 bg-transparent">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-12 text-center">Let me know what you think!</h2>
+            <div id="cusdis_thread" 
+                 data-host="https://cusdis.com"
+                 data-app-id="9d55e686-51fe-4129-8e93-d2b06b0f96ce"
+                 data-page-id="page-home"
+                 data-page-url="https://vincentmano.com"
+                 data-page-title="Home Page"
+                 data-theme="dark"
+                 class="max-w-4xl mx-auto rounded-lg overflow-hidden shadow-2xl">
+            </div>
+        </div>
+    </section>
+
+    <script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+
     <!-- About Section -->
-    <section id="about" class="py-20 bg-transparent">
+<section id="about" class="py-20 bg-transparent">
 <div class="container mx-auto px-6">
             <h2 class="text-4xl font-bold mb-12 text-center">About</h2>
             <div class="flex flex-col md:flex-row items-center">
@@ -245,5 +263,17 @@ top: 0;
             });
         });
     </script>
+    <style>
+        #cusdis_thread {
+            background-color: rgba(20, 20, 20, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+        }
+        #cusdis_thread iframe {
+            background-color: transparent !important;
+            color: #fff !important;
+            font-family: 'Montserrat', sans-serif;
+        }
+    </style>
 </body>
 </html>

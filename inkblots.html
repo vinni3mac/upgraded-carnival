@@ -82,7 +82,7 @@ top: 0;
                     <div id="nixie-clock" class="mt-8 flex justify-center gap-4">
                       <div class="tube text-center">
                         <span class="label text-sm text-gray-400">DAYS</span>
-                        <span id="days" class="text-4xl font-bold text-red-500">40</span>
+                        <span id="days" class="text-4xl font-bold text-red-500">20</span>
                       </div>
                       <div class="tube text-center">
                         <span class="label text-sm text-gray-400">HRS</span>
@@ -103,9 +103,9 @@ top: 0;
     </section>
 
     <script>
-        // Countdown timer for album release
+        // Countdown timer - 20 days from page load
+        const releaseDate = new Date(Date.now() + 20 * 24 * 60 * 60 * 1000);
         function updateCountdown() {
-            const releaseDate = new Date('2026-01-01T00:00:00');
             const now = new Date();
             const diff = releaseDate - now;
             

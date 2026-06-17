@@ -571,6 +571,7 @@
                     <a href="#about" class="menu-item block px-4 py-3 text-white hover:bg-red-600 transition">About</a>
                     <a href="#contact" class="menu-item block px-4 py-3 text-white hover:bg-red-600 transition">Contact</a>
                     <a href="#upcoming" class="menu-item block px-4 py-3 text-white hover:bg-red-600 transition">Upcoming</a>
+                    <a href="#raffle" class="menu-item block px-4 py-3 text-white hover:bg-red-600 transition">Raffle</a>
                     <a href="news.html" class="menu-item block px-4 py-3 text-white hover:bg-red-600 transition">News</a>
                     <a href="tour-dates.html" class="menu-item block px-4 py-3 text-white hover:bg-red-600 transition">Tour Dates</a>
                 </div>
@@ -618,13 +619,101 @@
                     </a>
                 </div>
                 <div class="flex space-x-6">
-                    <a href="https://www.instagram.com/vincemano" class="social-icon text-white">
-                        <i data-feather="instagram"></i>
+                    <a href="https://www.instagram.com/vincemano?igsh=NTc4MTIwNjQ2YQ%3D%3D&utm_source=qr" class="social-icon text-white">
+<i data-feather="instagram"></i>
                     </a>
                 </div>
             </div>
             <div class="md:w-1/2 flex justify-center">
                 <img src="https://huggingface.co/spaces/Vinni3mac/polished-sonic-artifacts/resolve/main/images/Scan 1.jpeg" alt="Polished Artifacts Album Cover" class="album-cover vinyl-spin rounded-lg shadow-2xl w-full max-w-md cursor-pointer">
+            </div>
+        </div>
+    </section>
+
+    <!-- Raffle Announcement Section -->
+    <section id="raffle" class="py-20 wave-section reveal-section">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto">
+                <!-- Celebration Badge -->
+                <div class="text-center mb-8">
+                    <span class="inline-block bg-gradient-to-r from-yellow-500 to-orange-500 text-black px-6 py-2 rounded-full text-lg font-bold animate-pulse">🎉 5,000 ELECTRIC EAGLE STICKERS SOLD! 🎉</span>
+                </div>
+
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-center glow-text">Electric Eagle Sweater Raffle</h2>
+
+                <!-- Prize Card -->
+                <div class="bg-gradient-to-br from-gray-900 to-black border border-red-600 border-opacity-50 rounded-xl p-8 mb-8" style="box-shadow: 0 0 40px rgba(139, 0, 0, 0.3);">
+                    <div class="flex flex-col md:flex-row items-center">
+                        <div class="md:w-1/3 mb-6 md:mb-0 flex justify-center">
+                            <div class="text-center">
+                                <div class="text-8xl mb-4">🦅</div>
+                                <p class="text-red-400 font-semibold text-lg">LIMITED EDITION</p>
+                                <p class="text-gray-400">Custom Electric Eagle Sweater</p>
+                            </div>
+                        </div>
+                        <div class="md:w-2/3 md:pl-8">
+                            <h3 class="text-2xl font-semibold mb-4 glow-text">10 Winners Will Be Chosen!</h3>
+                            <p class="text-lg text-gray-300 mb-4">
+                                To celebrate <strong class="text-yellow-400">5,000 Electric Eagle stickers sold</strong>, 10 lucky winners will receive a custom, limited edition Electric Eagle sweater — shipping and handling on us!
+                            </p>
+                            <p class="text-gray-400">
+                                After the drawing, just give us your size and your limited edition sweater is on its way. This serves as a small token of appreciation for all your continued support.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Timeline -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-black bg-opacity-50 p-6 rounded-lg border border-white border-opacity-20 text-center hover:border-red-600 transition-all duration-300">
+                        <div class="text-3xl mb-2">📝</div>
+                        <h4 class="font-semibold mb-2 text-red-400">Entries Open</h4>
+                        <p class="text-gray-300">Friday, June 19, 2026</p>
+                        <p class="text-gray-500 text-sm">12:00 AM Pacific Standard Time</p>
+                    </div>
+                    <div class="bg-black bg-opacity-50 p-6 rounded-lg border border-white border-opacity-20 text-center hover:border-red-600 transition-all duration-300">
+                        <div class="text-3xl mb-2">⏰</div>
+                        <h4 class="font-semibold mb-2 text-red-400">Entries Close</h4>
+                        <p class="text-gray-300">Thursday, June 25, 2026</p>
+                        <p class="text-gray-500 text-sm">5:00 PM Pacific Standard Time</p>
+                    </div>
+                    <div class="bg-black bg-opacity-50 p-6 rounded-lg border border-white border-opacity-20 text-center hover:border-red-600 transition-all duration-300">
+                        <div class="text-3xl mb-2">🎰</div>
+                        <h4 class="font-semibold mb-2 text-red-400">Winners Chosen</h4>
+                        <p class="text-gray-300">Friday, June 26, 2026</p>
+                        <p class="text-gray-500 text-sm">12:00 PM Pacific Standard Time</p>
+                    </div>
+                </div>
+
+                <!-- Entry Form -->
+                <div class="bg-black bg-opacity-50 p-8 rounded-xl border border-white border-opacity-20 mb-8 music-player" style="backdrop-filter: blur(10px);">
+                    <h3 class="text-2xl font-semibold mb-2 text-center">Enter the Raffle</h3>
+                    <p class="text-center text-gray-400 mb-6">Simply provide your name and a way to reach you — we'll take care of the rest!</p>
+                    <form action="https://formspree.io/f/mpqjaqgd" method="POST" class="flex flex-col gap-5 max-w-md mx-auto" id="raffle-form">
+                        <input type="hidden" name="_subject" value="Electric Eagle Sweater Raffle Entry">
+                        <input type="hidden" name="raffle_type" value="Electric Eagle Sweater Raffle">
+                        <div class="form-group">
+                            <label for="raffle-name" class="block text-sm text-gray-400 mb-2">Your Name</label>
+                            <input type="text" id="raffle-name" name="name" placeholder="Enter your name" required autocomplete="name" class="animated-input w-full p-4 text-lg rounded-lg">
+                        </div>
+                        <div class="form-group">
+                            <label for="raffle-contact" class="block text-sm text-gray-400 mb-2">How Can We Reach You? (Email or Phone)</label>
+                            <input type="text" id="raffle-contact" name="contact" placeholder="Email or phone number" required class="animated-input w-full p-4 text-lg rounded-lg">
+                        </div>
+                        <button type="submit" class="submit-btn p-4 text-lg text-white rounded-lg cursor-pointer font-semibold flex items-center justify-center gap-2">
+                            <i data-feather="gift" class="w-5 h-5"></i>
+                            Enter Raffle
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Vincent's Quote -->
+                <div class="text-center bg-black bg-opacity-30 p-8 rounded-xl border-l-4 border-red-600">
+                    <p class="text-xl italic text-gray-300 mb-4">
+                        "I'm so wildly humbled you guys enjoy my music enough to keep listening, and I hope to see you guys at the next show."
+                    </p>
+                    <p class="text-red-400 font-semibold">— Vincent Mano</p>
+                </div>
             </div>
         </div>
     </section>
@@ -885,5 +974,3 @@
     </script>
 </body>
 </html>
-
-

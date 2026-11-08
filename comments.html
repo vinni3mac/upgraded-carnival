@@ -2,139 +2,259 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inkblots and Photographs | Vincent Mano</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Comment Section | Vincent Mano</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/feather-icons"></script>
+    <link rel="stylesheet" type="text/css" href="https://www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0" />
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
+        
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: #000;
+            background-color: #0a0a0a;
             color: #fff;
-            position: relative;
-            z-index: 1;
+            overflow-x: hidden;
         }
-        body::before {
-            content: "";
-            background-image: url('https://huggingface.co/spaces/Vinni3mac/polished-sonic-artifacts/resolve/main/images/F0A5200F-4E3D-4625-9F78-0D465ACEC581.PNG');
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: contain;
-            opacity: 0.6;
+
+        .inkblot-bg {
             position: fixed;
-top: 0;
+            top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             z-index: -1;
-            pointer-events: none;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
         }
-        .hero-gradient {
-            background: transparent;
-}
+
+        .inkblot {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.4;
+            animation: inkblotPulse 8s ease-in-out infinite;
+        }
+
+        .inkblot-1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(ellipse, #1a1a2e 0%, #2d132c 50%, transparent 70%);
+            top: 10%;
+            left: 5%;
+        }
+
+        .inkblot-2 {
+            width: 500px;
+            height: 300px;
+            background: radial-gradient(ellipse, #16213e 0%, #1a1a2e 50%, transparent 70%);
+            top: 30%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        .inkblot-3 {
+            width: 350px;
+            height: 450px;
+            background: radial-gradient(ellipse, #2d132c 0%, #1a1a2e 50%, transparent 70%);
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+        }
+
+        @keyframes inkblotPulse {
+            0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.3; }
+            50% { transform: scale(1.2) rotate(5deg); opacity: 0.5; }
+        }
+
+        .music-notes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .note {
+            position: absolute;
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.1);
+            animation: floatNote 15s linear infinite;
+        }
+
+        @keyframes floatNote {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.3; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+
+        .glow-text { transition: all 0.3s ease; }
+        .glow-text:hover { text-shadow: 0 0 10px currentColor, 0 0 20px currentColor; }
+
+        .neon-border {
+            position: relative;
+            border: 2px solid transparent;
+            background: linear-gradient(#0a0a0a, #0a0a0a) padding-box,
+                        linear-gradient(90deg, #ff0000, #ff6b6b, #ff0000) border-box;
+            background-size: 100% 100%, 200% 100%;
+            animation: neonFlow 3s linear infinite;
+        }
+
+        @keyframes neonFlow {
+            0% { background-position: 0% 0%, 0% 0%; }
+            100% { background-position: 0% 0%, 200% 0%; }
+        }
+
+        .menu-item { position: relative; overflow: hidden; }
+        .menu-item::before {
+            content: '♪';
+            position: absolute;
+            left: -20px;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        .menu-item:hover::before { left: 10px; opacity: 1; }
+        .menu-item:hover { padding-left: 30px; }
+
+        /* Custom Dark Mode Styling for Comment Box */
+        #HCB_comment_box { 
+            color: #fff !important; 
+            font-family: 'Montserrat', sans-serif !important; 
+            text-align: left;
+        }
+        #HCB_comment_box h3 { display: none !important; }
+        #HCB_comment_box textarea, 
+        #HCB_comment_box input[type="text"] {
+            background-color: rgba(20, 20, 30, 0.9) !important;
+            color: #fff !important;
+            border: 2px solid #444 !important;
+            border-radius: 0.5rem !important;
+            padding: 0.75rem !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+            margin-bottom: 12px !important;
+            font-family: 'Montserrat', sans-serif !important;
+            transition: all 0.3s ease;
+        }
+        #HCB_comment_box textarea:focus, 
+        #HCB_comment_box input[type="text"]:focus {
+            outline: none !important;
+            border-color: #ff4444 !important;
+            box-shadow: 0 0 15px rgba(255, 68, 68, 0.3) !important;
+        }
+        #HCB_comment_box .submit {
+            background: linear-gradient(135deg, #cc0000 0%, #ff4444 100%) !important;
+            color: #fff !important;
+            border: none !important;
+            padding: 0.6rem 1.75rem !important;
+            border-radius: 9999px !important;
+            font-weight: 600 !important;
+            cursor: pointer !important;
+            transition: transform 0.2s, box-shadow 0.2s !important;
+            text-shadow: none !important;
+            margin-top: 0.5rem !important;
+        }
+        #HCB_comment_box .submit:hover { 
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(255, 68, 68, 0.3) !important;
+        }
+        #HCB_comment_box .comment { 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important; 
+            padding: 1.25rem 0 !important; 
+        }
+        #HCB_comment_box .hcb-comment-body {
+            color: #e5e7eb !important;
+            font-size: 1rem !important;
+            margin-top: 0.5rem !important;
+            line-height: 1.5 !important;
+        }
+        #HCB_comment_box .author-name {
+            color: #ff4444 !important;
+            font-weight: 700 !important;
+        }
+        #HCB_comment_box .datetime {
+            color: #9ca3af !important;
+            font-size: 0.75rem !important;
+        }
+        #HCB_comment_box .hcb-comment-tb a { 
+            color: #9ca3af !important; 
+            font-size: 0.8rem !important;
+            margin-right: 10px !important;
+        }
+        #HCB_comment_box .hcb-comment-tb a:hover { color: #ff4444 !important; }
+        #HCB_comment_box .home-desc { display: none !important; }
     </style>
 </head>
-<body class="antialiased">
+<body class="antialiased flex flex-col min-h-screen justify-between">
+    <div class="inkblot-bg">
+        <div class="inkblot inkblot-1"></div>
+        <div class="inkblot inkblot-2"></div>
+        <div class="inkblot inkblot-3"></div>
+    </div>
+
+    <div class="music-notes" id="musicNotes"></div>
+
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-black bg-opacity-90 py-4 px-6">
+    <nav class="fixed w-full z-50 bg-black bg-opacity-80 py-4 px-6 backdrop-blur-md">
         <div class="container mx-auto flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-white">Vincent Mano</a>
-            <div class="relative hidden">
-                <div class="relative hidden">
-                    <button id="menu-toggle" class="hidden text-white bg-red-600 px-3 py-1 rounded flex items-center space-x-1">
-                        <span>Menu</span>
-                        <i id="menu-icon" data-feather="chevron-down" class="w-4 h-4"></i>
-                    </button>
-                    <div id="menu-dropdown" class="hidden absolute right-0 mt-2 w-48 bg-black bg-opacity-90 border border-red-600 rounded-md shadow-lg hidden z-50">
-<a href="index.html#music" class="block px-4 py-2 text-white hover:bg-red-600 transition">Music</a>
-                    <a href="index.html#about" class="block px-4 py-2 text-white hover:bg-red-600 transition">About</a>
-                    <a href="index.html#contact" class="block px-4 py-2 text-white hover:bg-red-600 transition">Contact</a>
-                    <a href="index.html#upcoming" class="block px-4 py-2 text-white hover:bg-red-600 transition">Upcoming</a>
-                    <a href="news.html" class="block px-4 py-2 text-white hover:bg-red-600 transition">News</a>
-                    <a href="tour-dates.html" class="block px-4 py-2 text-white hover:bg-red-600 transition">Tour Dates</a>
-</div>
-            </div>
-</div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero-gradient min-h-screen flex items-center justify-center pt-20">
-        <div class="container mx-auto px-6 py-20 text-center">
-            <h1 class="text-5xl md:text-7xl font-bold mb-6 text-white opacity-80">Inkblots and Photographs</h1>
-            <p class="text-xl mb-8 text-gray-400">Coming Late 2026</p>
-<div class="max-w-3xl mx-auto">
-                <img src="https://huggingface.co/spaces/Vinni3mac/polished-sonic-artifacts/resolve/main/images/IMG_3792.jpg" alt="Inkblots and Photographs" class="rounded-lg shadow-2xl w-full mb-12 hover:scale-105 transition-transform duration-300">
-<div class="text-lg space-y-6">
-                    <p>
-                        "Inkblots and Photographs" represents Vincent Mano's deepest exploration into emotional storytelling through music. This upcoming album marks a significant evolution in his sound, embracing a slower, more introspective approach to electronic creation.
-                    </p>
-                    <p>
-                        Each track will serve as an audio photograph - capturing raw emotional moments through lush synthesizers, delicate piano work, and Vincent's signature vulnerable vocal delivery.
-                    </p>
-                    <p>
-                        The album draws inspiration from the contrast between fleeting digital moments and permanent emotional imprints, blending organic instrumentation with cutting-edge electronic production techniques.
-                    </p>
-                <a href="index.html" class="inline-block bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition mt-8">
-                        Back to Main
-                    </a>
-
-                    <div id="nixie-clock" class="mt-8 flex justify-center gap-4">
-                      <div class="tube text-center">
-                        <span class="label text-sm text-gray-400">DAYS</span>
-                        <span id="days" class="text-4xl font-bold text-red-500">00</span>
-                      </div>
-                      <div class="tube text-center">
-                        <span class="label text-sm text-gray-400">HRS</span>
-                        <span id="hours" class="text-4xl font-bold text-red-500">00</span>
-                      </div>
-                      <div class="tube text-center">
-                        <span class="label text-sm text-gray-400">MIN</span>
-                        <span id="minutes" class="text-4xl font-bold text-red-500">00</span>
-                      </div>
-                      <div class="tube text-center">
-                        <span class="label text-sm text-gray-400">SEC</span>
-                        <span id="seconds" class="text-4xl font-bold text-red-500">00</span>
-                      </div>
-                    </div>
+            <a href="index.html" class="text-2xl font-bold text-white glow-text">Vincent Mano</a>
+            <div class="relative">
+                <button id="menu-toggle" class="text-white bg-red-600 px-4 py-2 rounded-lg flex items-center space-x-2 neon-border">
+                    <span>Menu</span>
+                    <i id="menu-icon" data-feather="chevron-down" class="w-4 h-4"></i>
+                </button>
+                <div id="menu-dropdown" class="absolute right-0 mt-2 w-48 bg-black bg-opacity-95 border border-red-600 rounded-lg shadow-2xl hidden z-50 overflow-hidden">
+                    <a href="index.html#music" class="menu-item block px-4 py-3 text-white hover:bg-red-600 transition">Music</a>
+                    <a href="index.html#about" class="menu-item block px-4 py-3 text-white hover:bg-red-600 transition">About</a>
+                    <a href="index.html#contact" class="menu-item block px-4 py-3 text-white hover:bg-red-600 transition">Contact</a>
+                    <a href="index.html#upcoming" class="menu-item block px-4 py-3 text-white hover:bg-red-600 transition">Upcoming</a>
+                    <a href="index.html#raffle" class="menu-item block px-4 py-3 text-white hover:bg-red-600 transition">Raffle</a>
+                    <a href="news.html" class="menu-item block px-4 py-3 text-white hover:bg-red-600 transition">News</a>
+                    <a href="tour-dates.html" class="menu-item block px-4 py-3 text-white hover:bg-red-600 transition">Tour Dates</a>
+                    <a href="comments.html" class="menu-item block px-4 py-3 text-white hover:bg-red-600 transition">Comments</a>
                 </div>
             </div>
         </div>
-    </section>
+    </nav>
 
-    <script>
-        // Countdown timer - Set to December 15, 2026
-        const releaseDate = new Date("December 15, 2026 00:00:00").getTime();
+    <!-- Main Comment Section -->
+    <main class="flex-grow pt-28 pb-16">
+        <div class="container mx-auto px-6 text-center">
+            
+            <h1 class="text-4xl md:text-6xl font-bold mb-4 text-white glow-text">Comment Section</h1>
+            <p class="text-xl mb-12 text-gray-300 max-w-2xl mx-auto">
+                Gimme some feedback, good or bad&mdash;I'd love to hear it.
+            </p>
 
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const diff = releaseDate - now;
-            
-            // If the countdown is finished, display all zeros
-            if (diff <= 0) {
-                document.getElementById('days').textContent = '00';
-                document.getElementById('hours').textContent = '00';
-                document.getElementById('minutes').textContent = '00';
-                document.getElementById('seconds').textContent = '00';
-                return;
-            }
-            
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-            
-            document.getElementById('days').textContent = days.toString().padStart(2, '0');
-            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-        }
-        
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
-    </script>
-<footer class="py-12 bg-transparent">
-<div class="container mx-auto px-6 text-center">
+            <div class="max-w-3xl mx-auto">
+                <div class="p-6 md:p-10 rounded-xl shadow-2xl" style="background: rgba(20, 20, 30, 0.75); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1);">
+                    <div id="HCB_comment_box">Loading comments...</div>
+                    <script type="text/javascript" id="hcb"> 
+                        if(!window.hcb_user){hcb_user={};} 
+                        (function(){
+                            var s=document.createElement("script"), l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"), h="https://www.htmlcommentbox.com";
+                            s.setAttribute("type","text/javascript");
+                            s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&mod=%241%24wq1rdBcg%24&opts=16798&num=10&ts=1700000000000");
+                            if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);
+                        })();
+                    </script>
+                </div>
+
+                <a href="index.html" class="inline-block bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition mt-10">
+                    Back to Main
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="py-8 bg-black bg-opacity-80 backdrop-blur-lg">
+        <div class="container mx-auto px-6 text-center">
             <div class="text-gray-400 text-sm">
                 &copy; 2024 Vincent Mano. All rights reserved.
             </div>
@@ -143,6 +263,43 @@ top: 0;
 
     <script>
         feather.replace();
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.getElementById('menu-toggle');
+            const menuDropdown = document.getElementById('menu-dropdown');
+            const menuIcon = document.getElementById('menu-icon');
+
+            menuToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                menuDropdown.classList.toggle('hidden');
+                menuIcon.setAttribute('data-feather', menuDropdown.classList.contains('hidden') ? 'chevron-down' : 'chevron-up');
+                feather.replace();
+            });
+
+            document.addEventListener('click', function(event) {
+                if (!menuToggle.contains(event.target) && !menuDropdown.contains(event.target)) {
+                    menuDropdown.classList.add('hidden');
+                    menuIcon.setAttribute('data-feather', 'chevron-down');
+                    feather.replace();
+                }
+            });
+        });
+
+        function createMusicNotes() {
+            const container = document.getElementById('musicNotes');
+            const notes = ['♪', '♫', '♬', '♩', '🎵', '🎶'];
+            for (let i = 0; i < 12; i++) {
+                const note = document.createElement('span');
+                note.className = 'note';
+                note.textContent = notes[Math.floor(Math.random() * notes.length)];
+                note.style.left = Math.random() * 100 + '%';
+                note.style.animationDelay = Math.random() * 15 + 's';
+                note.style.animationDuration = (15 + Math.random() * 10) + 's';
+                note.style.fontSize = (16 + Math.random() * 20) + 'px';
+                container.appendChild(note);
+            }
+        }
+        createMusicNotes();
     </script>
 </body>
 </html>

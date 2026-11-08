@@ -1,158 +1,489 @@
-box-sizing: border-box;
-}
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Vincent Mano | Polished Artifacts</title>
+    <meta name="description" content="Official website of Vincent Mano, alternative rock/electronic pop musician from Woodland Hills, California. Featuring the album 'Polished Artifacts'">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap');
+        
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         /* Hide any stray text nodes */
-html::before,
-html::after,
-body::before,
-@@ -36,6 +37,7 @@
-overflow-x: hidden;
-}
+        html::before,
+        html::after,
+        body::before,
+        body::after {
+            display: none !important;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #0a0a0a;
+            color: #fff;
+            overflow-x: hidden;
+        }
 
         /* Animated Inkblot Background */
-.inkblot-bg {
-position: fixed;
-top: 0;
-@@ -114,6 +116,7 @@
-}
-}
+        .inkblot-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #0a0a0a 100%);
+        }
+
+        .inkblot {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.4;
+            animation: inkblotPulse 8s ease-in-out infinite;
+        }
+
+        .inkblot-1 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(ellipse, #1a1a2e 0%, #2d132c 50%, transparent 70%);
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .inkblot-2 {
+            width: 500px;
+            height: 300px;
+            background: radial-gradient(ellipse, #16213e 0%, #1a1a2e 50%, transparent 70%);
+            top: 30%;
+            right: 10%;
+            animation-delay: 2s;
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+        }
+
+        .inkblot-3 {
+            width: 350px;
+            height: 450px;
+            background: radial-gradient(ellipse, #2d132c 0%, #1a1a2e 50%, transparent 70%);
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 4s;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+        }
+
+        .inkblot-4 {
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(ellipse, #0f3460 0%, #16213e 50%, transparent 70%);
+            top: 60%;
+            right: 5%;
+            animation-delay: 1s;
+        }
+
+        .inkblot-5 {
+            width: 450px;
+            height: 350px;
+            background: radial-gradient(ellipse, #1a1a2e 0%, #2d132c 50%, transparent 70%);
+            top: 80%;
+            left: 40%;
+            animation-delay: 3s;
+            border-radius: 70% 30% 50% 50% / 30% 70% 30% 70%;
+        }
+
+        @keyframes inkblotPulse {
+            0%, 100% {
+                transform: scale(1) rotate(0deg);
+                opacity: 0.3;
+            }
+            50% {
+                transform: scale(1.2) rotate(5deg);
+                opacity: 0.5;
+            }
+        }
 
         /* Floating Music Notes */
-.music-notes {
-position: fixed;
-top: 0;
-@@ -149,6 +152,7 @@
-}
-}
+        .music-notes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .note {
+            position: absolute;
+            font-size: 24px;
+            color: rgba(255, 255, 255, 0.1);
+            animation: floatNote 15s linear infinite;
+        }
+
+        @keyframes floatNote {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
 
         /* Animated Sound Wave Button */
-.sound-wave-btn {
-position: relative;
-overflow: hidden;
-@@ -178,6 +182,7 @@
-box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
-}
+        .sound-wave-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .sound-wave-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+            border-radius: 50%;
+        }
+
+        .sound-wave-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .sound-wave-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+        }
 
         /* Equalizer Button Effect */
-.equalizer-btn {
-position: relative;
-overflow: hidden;
-@@ -218,6 +223,7 @@
-100% { height: 80%; }
-}
+        .equalizer-btn {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .equalizer-btn .eq-bars {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: flex-end;
+            padding: 5px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .equalizer-btn:hover .eq-bars {
+            opacity: 0.5;
+        }
+
+        .eq-bar {
+            width: 3px;
+            background: currentColor;
+            animation: eqBounce 0.5s ease-in-out infinite alternate;
+        }
+
+        .eq-bar:nth-child(1) { animation-delay: 0s; }
+        .eq-bar:nth-child(2) { animation-delay: 0.1s; }
+        .eq-bar:nth-child(3) { animation-delay: 0.2s; }
+        .eq-bar:nth-child(4) { animation-delay: 0.15s; }
+        .eq-bar:nth-child(5) { animation-delay: 0.05s; }
+
+        @keyframes eqBounce {
+            0% { height: 20%; }
+            100% { height: 80%; }
+        }
 
         /* Pulse Ring Animation for Links */
-.pulse-link {
-position: relative;
-transition: all 0.3s ease;
-@@ -254,6 +260,7 @@
-}
-}
+        .pulse-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .pulse-link::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            border: 2px solid currentColor;
+            border-radius: inherit;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            animation: none;
+        }
+
+        .pulse-link:hover::after {
+            animation: pulseRing 1s ease-out infinite;
+        }
+
+        @keyframes pulseRing {
+            0% {
+                width: 100%;
+                height: 100%;
+                opacity: 0.8;
+            }
+            100% {
+                width: 150%;
+                height: 150%;
+                opacity: 0;
+            }
+        }
 
         /* Glowing Text Effect */
-.glow-text {
-transition: all 0.3s ease;
-}
-@@ -262,6 +269,7 @@
-text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
-}
+        .glow-text {
+            transition: all 0.3s ease;
+        }
+
+        .glow-text:hover {
+            text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor;
+        }
 
         /* Vinyl Spin Animation */
-.vinyl-spin:hover {
-animation: vinylRotate 3s linear infinite;
-}
-@@ -271,6 +279,7 @@
-to { transform: rotate(360deg); }
-}
+        .vinyl-spin:hover {
+            animation: vinylRotate 3s linear infinite;
+        }
+
+        @keyframes vinylRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
 
         /* Wave Background for Sections */
-.wave-section {
-position: relative;
-overflow: hidden;
-@@ -292,6 +301,7 @@
-100% { transform: translateX(50%); }
-}
+        .wave-section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .wave-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.02), transparent);
+            animation: waveMove 8s linear infinite;
+        }
+
+        @keyframes waveMove {
+            0% { transform: translateX(-50%); }
+            100% { transform: translateX(50%); }
+        }
 
         /* Neon Border Animation */
-.neon-border {
-position: relative;
-border: 2px solid transparent;
-@@ -306,6 +316,7 @@
-100% { background-position: 0% 0%, 200% 0%; }
-}
+        .neon-border {
+            position: relative;
+            border: 2px solid transparent;
+            background: linear-gradient(#0a0a0a, #0a0a0a) padding-box,
+                        linear-gradient(90deg, #ff0000, #ff6b6b, #ff0000) border-box;
+            background-size: 100% 100%, 200% 100%;
+            animation: neonFlow 3s linear infinite;
+        }
+
+        @keyframes neonFlow {
+            0% { background-position: 0% 0%, 0% 0%; }
+            100% { background-position: 0% 0%, 200% 0%; }
+        }
 
         /* Ripple Effect */
-.ripple {
-position: relative;
-overflow: hidden;
-@@ -331,6 +342,7 @@
-}
-}
+        .ripple {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ripple:active::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            animation: rippleEffect 0.6s ease-out;
+        }
+
+        @keyframes rippleEffect {
+            to {
+                transform: translate(-50%, -50%) scale(40);
+                opacity: 0;
+            }
+        }
 
         /* Hero gradient with animation */
-.hero-gradient {
-background: transparent;
-}
-@@ -360,6 +372,7 @@
-border: 1px solid rgba(255, 255, 255, 0.1);
-}
+        .hero-gradient {
+            background: transparent;
+        }
+
+        .album-cover {
+            transition: all 0.5s ease;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .album-cover:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 30px 60px -12px rgba(139, 0, 0, 0.4);
+        }
+
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: translateY(-5px) scale(1.2);
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.5));
+        }
+
+        .music-player {
+            background: rgba(20, 20, 30, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
 
         /* Menu Animation */
-.menu-item {
-position: relative;
-overflow: hidden;
-@@ -382,6 +395,7 @@
-padding-left: 30px;
-}
+        .menu-item {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-item::before {
+            content: '♪';
+            position: absolute;
+            left: -20px;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .menu-item:hover::before {
+            left: 10px;
+            opacity: 1;
+        }
+
+        .menu-item:hover {
+            padding-left: 30px;
+        }
 
         /* Instrument Tags Animation */
-.instrument-tag {
-transition: all 0.3s ease;
-cursor: pointer;
-@@ -393,6 +407,7 @@
-box-shadow: 0 5px 15px rgba(255, 68, 68, 0.4);
-}
+        .instrument-tag {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .instrument-tag:hover {
+            background: linear-gradient(135deg, #ff4444, #cc0000);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 68, 68, 0.4);
+        }
 
         /* Spotify Green Glow */
-.spotify-btn {
-transition: all 0.3s ease;
-}
-@@ -401,6 +416,7 @@
-box-shadow: 0 0 20px rgba(30, 215, 96, 0.6), 0 0 40px rgba(30, 215, 96, 0.3);
-}
+        .spotify-btn {
+            transition: all 0.3s ease;
+        }
+
+        .spotify-btn:hover {
+            box-shadow: 0 0 20px rgba(30, 215, 96, 0.6), 0 0 40px rgba(30, 215, 96, 0.3);
+        }
 
         /* Apple Music Glow */
-.apple-btn {
-transition: all 0.3s ease;
-}
-@@ -409,6 +425,7 @@
-box-shadow: 0 0 20px rgba(255, 255, 255, 0.6), 0 0 40px rgba(255, 255, 255, 0.3);
-}
+        .apple-btn {
+            transition: all 0.3s ease;
+        }
+
+        .apple-btn:hover {
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.6), 0 0 40px rgba(255, 255, 255, 0.3);
+        }
 
         /* Section Reveal Animation */
-.reveal-section {
-opacity: 0;
-transform: translateY(50px);
-@@ -420,6 +437,7 @@
-transform: translateY(0);
-}
+        .reveal-section {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
         /* Form Input Animation */
-.animated-input {
-transition: all 0.3s ease;
-border: 2px solid #444;
-@@ -459,10 +477,500 @@
-border-color: #666;
-}
+        .animated-input {
+            transition: all 0.3s ease;
+            border: 2px solid #444;
+            background-color: rgba(20, 20, 30, 0.9) !important;
+            color: #ffffff !important;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            pointer-events: auto;
+            user-select: text;
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+        }
+
+        .animated-input:focus {
+            border-color: #ff4444;
+            box-shadow: 0 0 20px rgba(255, 68, 68, 0.4);
+            transform: scale(1.02);
+            outline: none;
+            background-color: rgba(30, 30, 40, 1) !important;
+        }
+
+        .animated-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .animated-input:focus::placeholder {
+            opacity: 0.3;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .animated-input:hover {
+            border-color: #666;
+        }
 
         /* Ensure textarea is scrollable and editable */
-textarea.animated-input {
-resize: vertical;
-min-height: 120px;
-line-height: 1.5;
-}
+        textarea.animated-input {
+            resize: vertical;
+            min-height: 120px;
+            line-height: 1.5;
+        }
 
-        .form-
         /* Form Group */
         .form-group {
             position: relative;

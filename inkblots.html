@@ -82,7 +82,7 @@ top: 0;
                     <div id="nixie-clock" class="mt-8 flex justify-center gap-4">
                       <div class="tube text-center">
                         <span class="label text-sm text-gray-400">DAYS</span>
-                        <span id="days" class="text-4xl font-bold text-red-500">20</span>
+                        <span id="days" class="text-4xl font-bold text-red-500">00</span>
                       </div>
                       <div class="tube text-center">
                         <span class="label text-sm text-gray-400">HRS</span>
@@ -103,11 +103,21 @@ top: 0;
     </section>
 
     <script>
-        // Countdown timer - 20 days from page load
-        const releaseDate = new Date(Date.now() + 20 * 24 * 60 * 60 * 1000);
+        // Countdown timer - Set to December 15, 2026
+        const releaseDate = new Date("December 15, 2026 00:00:00").getTime();
+
         function updateCountdown() {
-            const now = new Date();
+            const now = new Date().getTime();
             const diff = releaseDate - now;
+            
+            // If the countdown is finished, display all zeros
+            if (diff <= 0) {
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+                return;
+            }
             
             const days = Math.floor(diff / (1000 * 60 * 60 * 24));
             const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
